@@ -1,0 +1,117 @@
+{
+  "appName": "LangBridge",
+  "cancel": "Cancel",
+  "changeLanguage": "Change language",
+  "crop": "Crop",
+  "darkMode": "Dark Mode",
+  "defaultErrorMessage": "An error occurred, please try again later",
+  "fieldRequired": "This field is required",
+  "invalidFieldValue": "Invalid field value",
+  "lightMode": "Light Mode",
+  "locationPermissionIsRequiredToContinue": "Location permission is required to continue",
+  "login": "Log In",
+  "signup": "Sign Up",
+  "loginSuccess": "Logged in successfully",
+  "noItemsFoundError": "No items found",
+  "password": "Password",
+  "pickDate": "Pick date",
+  "relocate": "Relocate",
+  "retry": "Retry",
+  "search": "Search",
+  "select": "Select",
+  "switchTheme": "Switch theme",
+  "theme": "Theme",
+  "themeDark": "Dark",
+  "themeLight": "Light",
+  "themeSystem": "System",
+  "typeYourPasswordHere": "Type your password here",
+  "typeYourUsenameHere": "Type your username here",
+  "username": "Username",
+  "validateIdenticalPasswords": "Passwords do not match",
+  "validationEmail": "Please enter a valid email",
+  "validationMaxLength": "Please complete the required length",
+  "validationPhoneNumber": "Please enter a valid phone number",
+  "validationRequired": "This field is required",
+  "validationUrl": "Please enter a valid URL",
+  "validatorEmail": "The field is not a valid email address",
+  "validatorMaxLength": "The field must be at most {n} characters long",
+  "@validatorMaxLength": {
+    "placeholders": {
+      "n": {}
+    }
+  },
+  "validatorMinLength": "The field must be at least {n} characters long",
+  "@validatorMinLength": {
+    "placeholders": {
+      "n": {}
+    }
+  },
+  "validatorPhoneNumber": "The field is not a valid phone number",
+  "validatorRequired": "The field is required",
+  "validatorUrl": "The field is not a valid URL address",
+  "validatorUseArabicOrKurdishLetters": "Please use Arabic or Kurdish letters",
+  "validatorUseEnglishLetters": "Please use English letters",
+  "welcomeBack": "Welcome back",
+
+
+
+
+  
+    "learnEnglishAndArabic": "Learn English & Arabic",
+    "together": "Together",
+    "startLearning": "Start Learning Free",
+    "wordBank": "Word Bank",
+    "wordBankDescription": "Dive into colorful vocabulary worlds—animals, colors, numbers, family, and more—all in one magical place.",
+    "exploreWords": "Explore Words",
+    "miniGames": "Mini Games",
+    "miniGamesDescription": "Play exciting quizzes and interactive games that make learning fun, boost your confidence, and bring joy to every lesson.",
+    "playGames": "Play Games",
+    "audioPractice": "Audio Practice",
+    "audioPracticeDescription": "Listen to friendly native voices and enjoy practicing your speaking skills in both English and Arabic.",
+    "startPractice": "Start Practice",
+    "dailyChallenges": "Daily Challenges",
+    "dailyChallengesDescription": "Keep your motivation high with fun daily challenges and track your amazing progress every step of the way.",
+    "takeChallenge": "Take Challenge",
+    "readyToBridgeLanguages": "Ready to Bridge Languages?",
+    "readyToBridgeLanguagesDescription": "Join thousands of happy learners and start your joyful journey toward mastering two languages with ease.",
+    "getStartedToday": "Get Started Today",
+
+
+
+
+    "learn": "Learn",
+    "daily": "Daily",
+    "leaderboard": "Leaderboard",
+    "profile": "Profile",
+    "activities": "Activities",
+
+    
+    "emailLabel": "Email",
+    "emailHint": "Enter Your Email",
+    "passwordLabel": "Password",
+    "passwordHint": "Enter Your Password",
+    "formHeaderSubtitle": "Enter your credentials to access your account",
+    "signupPrompt": "Don't have an account? ",
+
+    "loginPrompt": "Already have an account?",
+    "securityMessage": "Your data is secure and protected",
+    "signupSubtitle": "Create your account to start learning",
+
+    "fullName": "Full Name",
+    "fullNameHint": "Enter your full name",
+    "accountSettings": "Account Settings",
+    "supportAndOthers": "Support & Others",
+    "helpAndSupport": "Help & Support",
+    "getHelpAndSupport": "Get help and support",
+    "about": "About",
+    "appVersionInfo": "App version and info",
+    "logout": "Logout",
+    "signOut": "Sign out of your account",
+    "helpAndSupportPressed": "Help & Support pressed",
+
+
+    "points": "Points",
+    "streak": "Streak",
+    "rank": "Rank",
+    "memberSince": "Member since"
+}

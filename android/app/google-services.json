@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "515732055273",
+    "project_id": "langbridge-d4664",
+    "storage_bucket": "langbridge-d4664.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515732055273:android:c3924377865441a1a6bc78",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmv13xxFCF3geIf9OmtGfsF9La5Yo2ssg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
