@@ -42,4 +42,4 @@ custom_lint
 
 13- if web run these commands (gcloud init) && (gsutil cors set cors.json storage bucket)
 
-14- for hosting assetslink for deeplinking follow this article: (https://medium.com/androiddevelopers/android-app-links-deploy-assetlinks-json-in-minutes-d7082dffcac)
+14- for hosting assetslink for deeplinking follow this article: (https://medium.com/androiddevelopers/android-app-links-deploy-assetlinks-json-in-minutes-d7082dffcac)# lang_bridge
