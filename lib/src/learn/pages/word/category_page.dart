@@ -92,7 +92,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                             context: context,
                             controller: _pagingController,
                             itemBuilder: (context, word, index) => Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                                   child: PhraseCard(
                                     key: ValueKey(word.id),
                                     english: word.english,
@@ -101,7 +101,7 @@ class _CategoryPageState extends ConsumerState<CategoryPage> {
                                     englishPronunciation: word.englishPronunciation,
                                   ),
                                 )),
-                        separatorBuilder: (context, index) => const SizedBox(height: 12)),
+                        separatorBuilder: (context, index) => const SizedBox(height: 0)),
                   ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/data/providers/authentication_provider.dart';
 import 'package:lang_bridge/data/providers/settings_provider.dart';
 
@@ -11,16 +12,15 @@ class LanguageDialog extends ConsumerStatefulWidget {
 }
 
 class _LanguageDialogState extends ConsumerState<LanguageDialog> {
-  String selectedLanguage = 'en';
-
   @override
   Widget build(BuildContext context) {
+    String selectedLanguage = ref.watch(settingsProvider).locale?.languageCode ?? 'en';
     final colorScheme = Theme.of(context).colorScheme;
 
     return AlertDialog(
       backgroundColor: colorScheme.surface,
       title: Text(
-        'Select Language',
+        context.l10n.select,
         style: TextStyle(color: colorScheme.onSurface),
       ),
       content: Column(
@@ -72,45 +72,31 @@ class AboutAppDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final local = context.l10n;
 
     return AlertDialog(
       backgroundColor: colorScheme.surface,
       title: Text(
-        'About',
+        local.about,
         style: TextStyle(color: colorScheme.onSurface),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'App Name: MyProfile',
-            style: TextStyle(color: colorScheme.onSurface),
-          ),
+          Text(local.appName, style: TextStyle(color: colorScheme.onSurface)),
           const SizedBox(height: 8),
-          Text(
-            'Version: 1.0.0',
-            style: TextStyle(color: colorScheme.onSurface),
-          ),
+          Text(local.version, style: TextStyle(color: colorScheme.onSurface)),
           const SizedBox(height: 8),
-          Text(
-            'Build: 100',
-            style: TextStyle(color: colorScheme.onSurface),
-          ),
+          Text(local.build, style: TextStyle(color: colorScheme.onSurface)),
           const SizedBox(height: 8),
-          Text(
-            'Developer: Your Company',
-            style: TextStyle(color: colorScheme.onSurface),
-          ),
+          Text(local.developer, style: TextStyle(color: colorScheme.onSurface)),
         ],
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(
-            'OK',
-            style: TextStyle(color: colorScheme.primary),
-          ),
+          child: Text(local.ok, style: TextStyle(color: colorScheme.primary)),
         ),
       ],
     );
@@ -123,31 +109,20 @@ class LogoutDialog extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
+    final local = AppLocalizations.of(context)!;
 
     return AlertDialog(
       backgroundColor: colorScheme.surface,
-      title: Text(
-        'Logout',
-        style: TextStyle(color: colorScheme.onSurface),
-      ),
-      content: Text(
-        'Are you sure you want to logout?',
-        style: TextStyle(color: colorScheme.onSurface),
-      ),
+      title: Text(local.logout, style: TextStyle(color: colorScheme.onSurface)),
+      content: Text(local.logoutConfirm, style: TextStyle(color: colorScheme.onSurface)),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text(
-            'Cancel',
-            style: TextStyle(color: colorScheme.primary),
-          ),
+          child: Text(local.cancel, style: TextStyle(color: colorScheme.primary)),
         ),
         TextButton(
           onPressed: () => ref.read(authenticationProvider.notifier).logout(),
-          child: Text(
-            'Logout',
-            style: TextStyle(color: colorScheme.error),
-          ),
+          child: Text(local.logout, style: TextStyle(color: colorScheme.error)),
         ),
       ],
     );

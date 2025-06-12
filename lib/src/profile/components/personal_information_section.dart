@@ -16,7 +16,7 @@ class PersonalInformationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProfileSectionCard(
-      title: 'Personal Information',
+      title: context.l10n.personalInformation,
       children: [
         ProfileInfoTile(
           icon: Icons.person,

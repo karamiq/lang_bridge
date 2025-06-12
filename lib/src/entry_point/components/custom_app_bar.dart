@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/components/gardient_text.dart';
@@ -34,7 +37,6 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          // App logo/icon
           Container(
             width: 50,
             height: 50,
@@ -78,7 +80,6 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
             ],
           ),
           const Spacer(),
-
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -86,7 +87,23 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
                 icon: Assets.assetsSvgStar,
                 color: AppColors.stars,
                 label: '5,365',
-                onPressed: () {},
+                onPressed: () async {
+                  for (var i = 0; i < 100; i++) {
+                    final random = Random();
+
+                    int randomPoints = 3000 + random.nextInt(201); // 201 because nextInt is exclusive
+
+                    FirebaseFirestore.instance.collection('users').doc(i.toString()).set({
+                      'fullName': 'User $i',
+                      'email': "tester$i@gmail.com",
+                      'createdAt': DateTime.now().toIso8601String(),
+                      'streak': 0,
+                      'points': randomPoints,
+                      'uid': i.toString(),
+                      'password': 'password$i',
+                    });
+                  }
+                },
               ),
               const SizedBox(width: Insets.small),
               AppBarIcon(

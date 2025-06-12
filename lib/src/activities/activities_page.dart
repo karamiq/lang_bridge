@@ -3,9 +3,7 @@ import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/src/activities/components/game_card.dart';
 
 class ActivitiesPage extends StatelessWidget {
-  const ActivitiesPage({
-    super.key,
-  });
+  const ActivitiesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,7 @@ class ActivitiesPage extends StatelessWidget {
         children: [
           const SizedBox(height: 20),
           Text(
-            'Games & activities',
+            context.l10n.gamesActivities,
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
@@ -26,7 +24,7 @@ class ActivitiesPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Practice with interactive games',
+            context.l10n.practiceWithGames,
             style: TextStyle(
               fontSize: 16,
               color: colorScheme.onSurfaceVariant,
@@ -37,32 +35,44 @@ class ActivitiesPage extends StatelessWidget {
             child: ListView(
               children: [
                 GameCard(
-                    context: context,
-                    title: 'Target Practice',
-                    subtitle: 'Quick translation challenges',
-                    icon: Icons.gps_fixed,
-                    iconColor: colorScheme.secondary),
+                  title: context.l10n.targetPracticeTitle,
+                  subtitle: context.l10n.targetPracticeSubtitle,
+                  icon: Icons.gps_fixed,
+                  iconColor: colorScheme.secondary,
+                  onTap: () {
+                    context.push('/target-practice');
+                  },
+                ),
                 const SizedBox(height: 16),
                 GameCard(
-                    context: context,
-                    title: 'Listening Practice',
-                    subtitle: 'Train your ear',
-                    icon: Icons.headphones,
-                    iconColor: colorScheme.tertiary),
+                  title: context.l10n.listeningPracticeTitle,
+                  subtitle: context.l10n.listeningPracticeSubtitle,
+                  icon: Icons.headphones,
+                  iconColor: colorScheme.tertiary,
+                  onTap: () {
+                    context.push('/listening-practice');
+                  },
+                ),
                 const SizedBox(height: 16),
                 GameCard(
-                    context: context,
-                    title: 'Writing Practice',
-                    subtitle: 'Improve your writing',
-                    icon: Icons.edit,
-                    iconColor: colorScheme.primary),
+                  title: context.l10n.writingPracticeTitle,
+                  subtitle: context.l10n.writingPracticeSubtitle,
+                  icon: Icons.edit,
+                  iconColor: colorScheme.primary,
+                  onTap: () {
+                    context.push('/writing-practice');
+                  },
+                ),
                 const SizedBox(height: 16),
                 GameCard(
-                    context: context,
-                    title: 'Memory Game',
-                    subtitle: 'Match and remember',
-                    icon: Icons.shuffle,
-                    iconColor: colorScheme.secondary),
+                  title: context.l10n.memoryGameTitle,
+                  subtitle: context.l10n.memoryGameSubtitle,
+                  icon: Icons.shuffle,
+                  iconColor: colorScheme.secondary,
+                  onTap: () {
+                    context.push('${RoutesDocument.activities}${RoutesDocument.memeoryGame}');
+                  },
+                ),
               ],
             ),
           ),

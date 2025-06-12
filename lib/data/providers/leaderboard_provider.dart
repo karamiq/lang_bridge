@@ -1,8 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lang_bridge/data/models/authentication_model.dart';
 import '../services/clients/_clients.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+part 'leaderboard_provider.g.dart';
+
+final firestore = FirebaseFirestore.instance;
+@riverpod
+Stream<List<AuthenticationModel>> leaderboardTopPerformancers(Ref ref) {
+  return firestore
+      .collection('users')
+      .orderBy('points', descending: true)
+      .snapshots()
+      .map((snapshot) => snapshot.docs.map((doc) {
+            return AuthenticationModel.fromJson(doc.data());
+          }).toList());
+}
+
+@riverpod
+Future<int> currentUserRank(Ref ref) async {
+  final currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser == null) return 0;
+  final topUsers = ref.watch(leaderboardTopPerformancersProvider);
+
+  return await topUsers.when(
+    data: (users) {
+      final rank = users.indexWhere((user) => user.uid == currentUser.uid);
+      return rank != -1 ? rank + 1 : 0;
+    },
+    loading: () => 0,
+    error: (_, __) => 0,
+  );
+}
 
 class LeaderboardRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

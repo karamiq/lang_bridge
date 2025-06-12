@@ -100,6 +100,24 @@
     "points": "النقاط",
     "streak": "المسار",
     "rank": "الترتيب",
-    "memberSince": "عضو منذ"
+    "memberSince": "عضو منذ",
+    "personalInformation": "المعلومات الشخصية",
 
+    "version": "الإصدار: 1.0.0",
+    "build": "البنية: 100",
+    "ok": "حسنًا",
+    "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+  "developer": "المطور: كرم رشيد \n الوصف: جسر اللغة هو تطبيق لتعلم اللغات يساعدك على تعلم الإنجليزية والعربية معًا بطريقة ممتعة وتفاعلية. مع مجموعة متنوعة من الميزات مثل بنك الكلمات، والألعاب المصغرة، وممارسة الصوت، والتحديات اليومية، يمكنك تحسين مهاراتك اللغوية أثناء الاستمتاع.",
+  "topPerformers": "أفضل المؤدين",
+
+  "gamesActivities": "الألعاب والأنشطة",
+  "practiceWithGames": "تدرّب باستخدام الألعاب التفاعلية",
+  "targetPracticeTitle": "تدريب الهدف",
+  "targetPracticeSubtitle": "تحديات ترجمة سريعة",
+  "listeningPracticeTitle": "تدريب الاستماع",
+  "listeningPracticeSubtitle": "درّب أذنك",
+  "writingPracticeTitle": "تدريب الكتابة",
+  "writingPracticeSubtitle": "طوّر مهاراتك في الكتابة",
+  "memoryGameTitle": "لعبة الذاكرة",
+  "memoryGameSubtitle": "طابق وتذكر"
 }

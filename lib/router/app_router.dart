@@ -1,5 +1,6 @@
 import 'package:lang_bridge/data/shared_preference/preferences.dart';
 import 'package:lang_bridge/router/routing_animation.dart';
+import 'package:lang_bridge/src/activities/pages/memory_game/memory_game_page.dart';
 import 'package:lang_bridge/src/auth/login_page.dart';
 import 'package:lang_bridge/src/auth/signup_page.dart';
 import 'package:lang_bridge/src/daily/daily_page.dart';
@@ -130,6 +131,14 @@ final router = GoRouter(
             state,
             const ActivitiesPage(),
           ),
+          routes: [
+            GoRoute(
+                path: RoutesDocument.memeoryGame,
+                pageBuilder: (context, state) => instanTransition(
+                      state,
+                      const MemoryGamePage(),
+                    )),
+          ],
         ),
         GoRoute(
           path: RoutesDocument.leaderboard,
@@ -173,6 +182,7 @@ class RoutesDocument {
   static const String learnPhrases = '/learn/phrases';
 
   static const String achievements = '/achievements';
+  static const String memeoryGame = '/memory-game';
 
   static String learnWordsCategory(String id) => '/learn/words/$id';
 }

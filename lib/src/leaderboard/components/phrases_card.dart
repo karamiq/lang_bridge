@@ -120,7 +120,7 @@ class _PhraseCardState extends State<PhraseCard> {
               icon: Icons.record_voice_over_rounded,
             ),
 
-            const Gap(Insets.small),
+            const Gap(Insets.medium),
             Container(
               height: 1,
               decoration: BoxDecoration(
@@ -133,7 +133,7 @@ class _PhraseCardState extends State<PhraseCard> {
                 ),
               ),
             ),
-            // Arabic Section
+            const Gap(Insets.medium),
             _buildLanguageSection(
               language: widget.arabic,
               pronunciation: widget.arabicPronunciation,

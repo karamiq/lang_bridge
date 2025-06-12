@@ -423,7 +423,7 @@ class LeaderboardItem extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: isCurrentUser
-            ? context.colorScheme.primaryContainer.withOpacity(0.3)
+            ? context.colorScheme.primaryContainer.withOpacity(0.5)
             : context.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
@@ -475,7 +475,7 @@ class LeaderboardItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isCurrentUser ? 'You' : user.fullName,
+                  user.fullName,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: isCurrentUser ? FontWeight.bold : FontWeight.w600,
@@ -491,7 +491,7 @@ class LeaderboardItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '${user.points} points',
+                      '${user.points} ${context.l10n.points.substring(2)}',
                       style: TextStyle(
                         fontSize: 12,
                         color: context.colorScheme.onSurface.withOpacity(0.7),
