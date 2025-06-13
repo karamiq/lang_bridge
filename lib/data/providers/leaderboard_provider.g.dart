@@ -26,7 +26,7 @@ final leaderboardTopPerformancersProvider =
 // ignore: unused_element
 typedef LeaderboardTopPerformancersRef
     = AutoDisposeStreamProviderRef<List<AuthenticationModel>>;
-String _$currentUserRankHash() => r'564eebec024d761340846209f54da616852801cd';
+String _$currentUserRankHash() => r'5fa97cc84fc0acc04cf05135ad31d749ba898ff9';
 
 /// See also [currentUserRank].
 @ProviderFor(currentUserRank)

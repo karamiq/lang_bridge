@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:lang_bridge/data/providers/settings_provider.dart';
 import 'package:lang_bridge/src/learn/components/upper_navigation_bar.dart';
 import 'package:lang_bridge/src/learn/components/upper_navigation_button.dart';
 
@@ -16,11 +15,10 @@ class LearnPage extends StatefulHookConsumerWidget {
 class _LearnPage extends ConsumerState<LearnPage> {
   List<String> get _navigationPages => [
         RoutesDocument.learnWords,
-        RoutesDocument.learnQuiz,
+        RoutesDocument.learnStories,
         RoutesDocument.learnPhrases,
       ];
 
-  /// Determines the currently selected navigation index
   int _getCurrentNavigationIndex() {
     final currentPath = GoRouterState.of(context).fullPath;
     if (currentPath == null) return 0;
@@ -29,10 +27,8 @@ class _LearnPage extends ConsumerState<LearnPage> {
     return index != -1 ? index : 0;
   }
 
-  /// Handles elegant navigation between sections
   void _navigateToSection(int index) {
     if (index >= 0 && index < _navigationPages.length) {
-      // Add a subtle haptic feedback for delightful interaction
       HapticFeedback.lightImpact();
 
       GoRouter.of(context).go(_navigationPages[index]);
@@ -41,41 +37,7 @@ class _LearnPage extends ConsumerState<LearnPage> {
 
   @override
   Widget build(BuildContext context) {
-    final settings = ref.watch(settingsProvider);
-
     return Scaffold(
-      // appBar: AppBar(
-      //   //   title: const Text('Learn'),
-      //   //   centerTitle: true,
-      //   backgroundColor: Theme.of(context).colorScheme.primary,
-      //   actions: [
-      //     IconButton(
-      //       icon: settings.themeMode.isDark
-      //           ? Icon(Icons.dark_mode, color: context.colorScheme.onPrimary)
-      //           : Icon(Icons.light_mode, color: context.colorScheme.onPrimary),
-      //       onPressed: () async {
-      //         ref.read(settingsProvider.notifier).toggleThemeMode(context);
-      //         print('Updating categories...');
-      //         // for (var category in wordBank) {
-      //         //   try {
-      //         //     await FirebaseFirestore.instance
-      //         //         .collection('categories')
-      //         //         .doc(category.id)
-      //         //         .set(category.toJson(), SetOptions(merge: true));
-      //         //   } on PlatformException catch (e) {
-      //         //     throw Exception('Error updating category ${category.category}: $e');
-      //         //   }
-      //         // }
-      //       },
-      //     ),
-      //     IconButton(
-      //       icon: Icon(Icons.language, color: context.colorScheme.onPrimary),
-      //       onPressed: () {
-      //         ref.read(settingsProvider.notifier).toggleLocale();
-      //       },
-      //     ),
-      //   ],
-      // ),
       body: Column(
         children: [
           UpperNavigationBar(
@@ -83,16 +45,16 @@ class _LearnPage extends ConsumerState<LearnPage> {
             onTabChanged: _navigateToSection,
             tabs: [
               UpperNavigationBarButton(
-                label: 'Words',
-                icon: Icons.book_rounded,
+                label: context.l10n.words,
+                icon: Assets.assetsSvgBook,
               ),
               UpperNavigationBarButton(
-                label: 'Quiz',
-                icon: Icons.quiz_rounded,
+                label: context.l10n.stories,
+                icon: Assets.assetsSvgBookShelf,
               ),
               UpperNavigationBarButton(
-                label: 'Phrases',
-                icon: Icons.chat_bubble_rounded,
+                label: context.l10n.phrases,
+                icon: Assets.assetsSvgClosedBook,
               ),
             ],
           ),

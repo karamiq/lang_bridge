@@ -6,7 +6,7 @@ part of 'categories_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$categoriesHash() => r'b63b44b3a0ea462145ca935cf413eedce0f5c9cb';
+String _$categoriesHash() => r'8616f6f4698e5e542ea2c359889b6e1b00747d4a';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -40,9 +40,9 @@ class CategoriesFamily extends Family<AsyncValue<List<CategorynModel>>> {
 
   /// See also [categories].
   CategoriesProvider call({
-    required String title,
-    required String category,
-    required CategorynModel? startAfterDoc,
+    String? title,
+    String? category,
+    CategorynModel? startAfterDoc,
     int limit = 10,
   }) {
     return CategoriesProvider(
@@ -85,9 +85,9 @@ class CategoriesProvider
     extends AutoDisposeFutureProvider<List<CategorynModel>> {
   /// See also [categories].
   CategoriesProvider({
-    required String title,
-    required String category,
-    required CategorynModel? startAfterDoc,
+    String? title,
+    String? category,
+    CategorynModel? startAfterDoc,
     int limit = 10,
   }) : this._internal(
           (ref) => categories(
@@ -125,8 +125,8 @@ class CategoriesProvider
     required this.limit,
   }) : super.internal();
 
-  final String title;
-  final String category;
+  final String? title;
+  final String? category;
   final CategorynModel? startAfterDoc;
   final int limit;
 
@@ -181,10 +181,10 @@ class CategoriesProvider
 // ignore: unused_element
 mixin CategoriesRef on AutoDisposeFutureProviderRef<List<CategorynModel>> {
   /// The parameter `title` of this provider.
-  String get title;
+  String? get title;
 
   /// The parameter `category` of this provider.
-  String get category;
+  String? get category;
 
   /// The parameter `startAfterDoc` of this provider.
   CategorynModel? get startAfterDoc;
@@ -199,9 +199,9 @@ class _CategoriesProviderElement
   _CategoriesProviderElement(super.provider);
 
   @override
-  String get title => (origin as CategoriesProvider).title;
+  String? get title => (origin as CategoriesProvider).title;
   @override
-  String get category => (origin as CategoriesProvider).category;
+  String? get category => (origin as CategoriesProvider).category;
   @override
   CategorynModel? get startAfterDoc =>
       (origin as CategoriesProvider).startAfterDoc;

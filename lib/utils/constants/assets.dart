@@ -10,6 +10,10 @@ class Assets {
   /// assets/svg/book.svg
   static const String assetsSvgBook = "assets/svg/book.svg";
 
+  /// Assets for assetsSvgBookShelf
+  /// assets/svg/book_shelf.svg
+  static const String assetsSvgBookShelf = "assets/svg/book_shelf.svg";
+
   /// Assets for assetsSvgCalendar
   /// assets/svg/calendar.svg
   static const String assetsSvgCalendar = "assets/svg/calendar.svg";

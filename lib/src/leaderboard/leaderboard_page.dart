@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lang_bridge/data/providers/authentication_provider.dart';
 import 'package:lang_bridge/data/providers/leaderboard_provider.dart';
 import 'package:lang_bridge/src/leaderboard/components/leaderboard_widgets.dart';

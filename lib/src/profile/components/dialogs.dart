@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/data/providers/authentication_provider.dart';
 import 'package:lang_bridge/data/providers/settings_provider.dart';

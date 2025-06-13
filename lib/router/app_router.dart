@@ -6,7 +6,8 @@ import 'package:lang_bridge/src/auth/signup_page.dart';
 import 'package:lang_bridge/src/daily/daily_page.dart';
 import 'package:lang_bridge/src/entry_point/entry_point.dart';
 import 'package:lang_bridge/src/learn/pages/phrases/phrase_page.dart';
-import 'package:lang_bridge/src/learn/pages/quiz_page.dart';
+import 'package:lang_bridge/src/activities/pages/quiz/quiz_page.dart';
+import 'package:lang_bridge/src/learn/pages/stories/stories_page.dart';
 import 'package:lang_bridge/src/learn/pages/word/category_page.dart';
 import 'package:lang_bridge/src/learn/pages/word/word_page.dart';
 import 'package:lang_bridge/src/profile/pages/achievements/achievements_page.dart';
@@ -103,10 +104,10 @@ final router = GoRouter(
               ],
             ),
             GoRoute(
-              path: RoutesDocument.learnQuiz,
+              path: RoutesDocument.learnStories,
               pageBuilder: (context, state) => instanTransition(
                 state,
-                const QuizPage(),
+                const StoriesPage(),
               ),
             ),
             GoRoute(
@@ -178,7 +179,7 @@ class RoutesDocument {
 
   // Full paths for sub-routes
   static const String learnWords = '/learn/words';
-  static const String learnQuiz = '/learn/quiz';
+  static const String learnStories = '/learn/stories';
   static const String learnPhrases = '/learn/phrases';
 
   static const String achievements = '/achievements';

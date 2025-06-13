@@ -93,7 +93,7 @@ class _UpperNavigationBarState extends State<UpperNavigationBar> with TickerProv
         borderRadius: BorderRadius.circular(16),
         onTap: () => widget.onTabChanged(index),
         child: AnimatedContainer(
-          padding: Insets.mediumAll,
+          padding: Insets.smallAll,
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOutCubic,
           margin: EdgeInsets.symmetric(horizontal: 4),
@@ -125,15 +125,31 @@ class _UpperNavigationBarState extends State<UpperNavigationBar> with TickerProv
               mainAxisSize: MainAxisSize.min,
               children: [
                 AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  transform: Matrix4.identity()..scale(isSelected ? 1.2 : 1.0),
-                  child: Icon(
-                    tab.icon,
-                    color: isSelected ? colorScheme.onPrimary : colorScheme.onSurface.withOpacity(0.6),
-                    size: 22,
-                  ),
-                ),
-                SizedBox(height: 6),
+                    transformAlignment: Alignment.center,
+                    duration: Duration(milliseconds: 300),
+                    transform: Matrix4.identity()..scale(isSelected ? 1.2 : 1.0),
+                    child: Container(
+                      padding: Insets.smallAll,
+                      decoration: isSelected
+                          ? BoxDecoration(
+                              color: context.colorScheme.onPrimary.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(12),
+                            )
+                          : null,
+                      child: SvgPicture.asset(
+                        tab.icon,
+                        width: isSelected ? 24 : 22,
+                        height: isSelected ? 24 : 22,
+                        fit: BoxFit.contain,
+                        colorFilter: ColorFilter.mode(
+                          isSelected
+                              ? context.colorScheme.onPrimary
+                              : context.colorScheme.onPrimary.withOpacity(0.7),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    )),
+                SizedBox(height: Insets.small),
                 AnimatedDefaultTextStyle(
                   duration: Duration(milliseconds: 300),
                   style: TextStyle(

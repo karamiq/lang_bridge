@@ -8,9 +8,9 @@ part 'categories_provider.g.dart';
 @riverpod
 Future<List<CategorynModel>> categories(
   Ref ref, {
-  required String title,
-  required String category,
-  required CategorynModel? startAfterDoc,
+  String? title,
+  String? category,
+  CategorynModel? startAfterDoc,
   int limit = 10,
 }) async {
   final firestore = FirebaseFirestore.instance;
@@ -20,7 +20,7 @@ Future<List<CategorynModel>> categories(
       .collection('categories')
       .where(
         'category',
-        isEqualTo: category.toLowerCase(),
+        isEqualTo: category?.toLowerCase(),
       )
       .limit(limit);
 
@@ -32,7 +32,7 @@ Future<List<CategorynModel>> categories(
   final querySnapshot = await query.get();
   final data = querySnapshot.docs.map((doc) => CategorynModel.fromJson(doc.data())).toList();
 
-  if (title.isNotEmpty) {
+  if (title != null && title.isNotEmpty) {
     return data.where((item) {
       final queryText = title.toLowerCase().trim();
       return item.arabic.toLowerCase().contains(queryText) || item.english.toLowerCase().contains(queryText);

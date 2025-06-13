@@ -119,5 +119,10 @@
   "writingPracticeTitle": "تدريب الكتابة",
   "writingPracticeSubtitle": "طوّر مهاراتك في الكتابة",
   "memoryGameTitle": "لعبة الذاكرة",
-  "memoryGameSubtitle": "طابق وتذكر"
+  "memoryGameSubtitle": "طابق وتذكر",
+  
+  "stories": "قصص",
+  "words": "كلمات",
+  "phrases": "عبارات",
+  "quiz": "اختبار"
 }

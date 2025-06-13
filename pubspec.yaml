@@ -106,6 +106,7 @@ flutter:
     - assets/svg/
     - assets/fonts/thuluth.ttf
     - assets/svg/book.svg
+    - assets/svg/book_shelf.svg
 
   fonts:
     - family: thuluth

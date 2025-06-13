@@ -136,5 +136,10 @@
   "writingPracticeTitle": "Writing Practice",
   "writingPracticeSubtitle": "Improve your writing",
   "memoryGameTitle": "Memory Game",
-  "memoryGameSubtitle": "Match and remember"
+  "memoryGameSubtitle": "Match and remember",
+
+  "stories": "Stories",
+  "words": "Words",
+  "phrases": "Phrases",
+  "quiz": "Quiz"
 }

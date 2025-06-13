@@ -18,7 +18,6 @@ class EntryPoint extends StatefulHookConsumerWidget {
 }
 
 class _EntryPointState extends ConsumerState<EntryPoint> with TickerProviderStateMixin {
-  /// Navigation destinations for the learning journey
   List<String> get _navigationPages => [
         RoutesDocument.learnWords,
         RoutesDocument.dailyPhrases,
@@ -26,8 +25,6 @@ class _EntryPointState extends ConsumerState<EntryPoint> with TickerProviderStat
         RoutesDocument.leaderboard,
         RoutesDocument.profile,
       ];
-
-  /// Determines the currently selected navigation index
   int _getCurrentNavigationIndex() {
     final currentPath = GoRouterState.of(context).fullPath;
     if (currentPath == null) return 0;
@@ -36,10 +33,8 @@ class _EntryPointState extends ConsumerState<EntryPoint> with TickerProviderStat
     return index != -1 ? index : 0;
   }
 
-  /// Handles elegant navigation between sections
   void _navigateToSection(int index) {
     if (index >= 0 && index < _navigationPages.length) {
-      // Add a subtle haptic feedback for delightful interaction
       HapticFeedback.lightImpact();
 
       GoRouter.of(context).go(_navigationPages[index]);
