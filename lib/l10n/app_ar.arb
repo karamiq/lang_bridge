@@ -1,4 +1,5 @@
 {
+  "@@locale": "ar",
   "appName": "جسر اللغة",
   "cancel": "إلغاء",
   "changeLanguage": "تغيير اللغة",
@@ -124,5 +125,80 @@
   "stories": "قصص",
   "words": "كلمات",
   "phrases": "عبارات",
-  "quiz": "اختبار"
+  "quiz": "اختبار",
+
+  "beginner": "مبتدئ",
+  "intermediate": "متوسط",
+  "advanced": "متقدم",
+  "read_button": "اقرأ",
+  "duration_minutes_suffix": "{minutes} دقيقة",
+  "@duration_minutes_suffix": {
+    "description": "مدة القصة بالدقائق",
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+
+  "selectLevel": "اختر المستوى",
+
+
+  "storyProgressPercnetage": "التقدم {percentage}%",
+  "@storyProgressPercnetage": {
+    "description": "Progress percentage in the app",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "previous_button": "السابق",
+  "next_button": "التالي",
+  "finish_button": "إنهاء",
+
+  "introduction": "مقدمة",
+  "greetings": "التحيات",
+  "common_phrases": "عبارات شائعة",
+  "questions": "الأسئلة",
+  "directions": "الاتجاهات",
+  "shopping": "التسوق",
+  "food_and_drink": "الطعام والشراب",
+  "travel": "السفر",
+  "emergencies": "الطوارئ",
+  "filterByCategory": "تصفية حسب الفئة",
+  "all": "الكل",
+
+    "submit": "إرسال",
+    "next": "التالي",
+    "finish": "إنهاء",
+    "listen": "استمع",
+    "complete": "أكمل",
+    "dailyWordChallenge": "تحدي الكلمة اليومية",
+    "example": "مثال",
+    "todaysProgress": "تقدم اليوم",
+    "challengesCompleted": "{completed} من {total} تحديات مكتملة",
+    "@challengesCompleted": {
+      "description": "عدد التحديات المكتملة من العدد الكلي",
+      "placeholders": {
+        "completed": {
+          "description": "عدد التحديات المكتملة"
+        },
+        "total": {}
+      }
+    },
+
+    "review": "مراجعة",
+    "vocabulary": "المفردات",
+
+    "dailyPhraseChallenge": "تحدي العبارة اليومية",
+
+    "excellentWork": "عمل رائع!",
+    "completedAllChallenges": "لقد أكملت جميع التحديات اليومية!\nعد غدًا للمزيد من التعلم.",
+    "totalPoints": "إجمالي النقاط: {points}",
+    "@totalPoints": {
+      "description": "يعرض إجمالي النقاط التي حصل عليها المستخدم",
+      "placeholders": {
+        "points": {}
+      }
+    }
+
+
+
 }

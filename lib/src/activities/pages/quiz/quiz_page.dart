@@ -95,7 +95,7 @@ class GameState {
 final firestoreProvider = Provider<FirebaseFirestore>((ref) => FirebaseFirestore.instance);
 
 abstract class VocabularyDataSource {
-  Future<List<CategorynModel>> getVocabularyByCategory(CategoryEnum category);
+  Future<List<CategorynModel>> getVocabularyByCategory(WordEnum category);
 }
 
 class FirestoreVocabularyDataSource implements VocabularyDataSource {
@@ -104,7 +104,7 @@ class FirestoreVocabularyDataSource implements VocabularyDataSource {
   FirestoreVocabularyDataSource(this._firestore);
 
   @override
-  Future<List<CategorynModel>> getVocabularyByCategory(CategoryEnum category) async {
+  Future<List<CategorynModel>> getVocabularyByCategory(WordEnum category) async {
     try {
       final querySnapshot =
           await _firestore.collection('categories').where('category', isEqualTo: category.toJson()).get();
@@ -131,7 +131,7 @@ final vocabularyDataSourceProvider = Provider<VocabularyDataSource>((ref) {
 // =====================================
 
 abstract class VocabularyRepository {
-  Future<List<CategorynModel>> getRandomVocabulary(CategoryEnum category, int count);
+  Future<List<CategorynModel>> getRandomVocabulary(WordEnum category, int count);
 }
 
 class VocabularyRepositoryImpl implements VocabularyRepository {
@@ -140,7 +140,7 @@ class VocabularyRepositoryImpl implements VocabularyRepository {
   VocabularyRepositoryImpl(this._dataSource);
 
   @override
-  Future<List<CategorynModel>> getRandomVocabulary(CategoryEnum category, int count) async {
+  Future<List<CategorynModel>> getRandomVocabulary(WordEnum category, int count) async {
     final allVocabulary = await _dataSource.getVocabularyByCategory(category);
 
     if (allVocabulary.length <= count) {
@@ -157,8 +157,7 @@ final vocabularyRepositoryProvider = Provider<VocabularyRepository>((ref) {
   return VocabularyRepositoryImpl(dataSource);
 });
 
-final randomVocabularyProvider =
-    FutureProvider.family<List<CategorynModel>, CategoryEnum>((ref, category) async {
+final randomVocabularyProvider = FutureProvider.family<List<CategorynModel>, WordEnum>((ref, category) async {
   final repository = ref.read(vocabularyRepositoryProvider);
   return repository.getRandomVocabulary(category, 6);
 });
@@ -400,7 +399,7 @@ class GameNotifier extends StateNotifier<GameState?> {
           arabic: arabicWord.text,
           arabicPronunciation: '',
           englishPronunciation: '',
-          category: CategoryEnum.animals, // This will be overridden
+          category: WordEnum.animals, // This will be overridden
         );
       }).toList();
 
@@ -692,7 +691,7 @@ class GameCompleteScreen extends StatelessWidget {
 // =====================================
 
 class VocabularyMatchingGame extends ConsumerStatefulWidget {
-  final CategoryEnum category;
+  final WordEnum category;
 
   const VocabularyMatchingGame({
     super.key,
@@ -886,13 +885,13 @@ class QuizPage extends StatelessWidget {
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
-        itemCount: CategoryEnum.values.length,
+        itemCount: WordEnum.values.length,
         itemBuilder: (context, index) {
-          final category = CategoryEnum.values[index];
+          final category = WordEnum.values[index];
           return Card(
             margin: const EdgeInsets.only(bottom: 8),
             child: ListTile(
-              title: Text(category.name.toUpperCase()),
+              title: Text(category.name(context).toUpperCase()),
               trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
                 Navigator.of(context).push(

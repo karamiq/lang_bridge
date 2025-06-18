@@ -1,12 +1,14 @@
+import 'package:lang_bridge/data/models/story_model.dart';
 import 'package:lang_bridge/data/shared_preference/preferences.dart';
 import 'package:lang_bridge/router/routing_animation.dart';
 import 'package:lang_bridge/src/activities/pages/memory_game/memory_game_page.dart';
+import 'package:lang_bridge/src/activities/pages/writing_practice/writing_practice_page.dart';
 import 'package:lang_bridge/src/auth/login_page.dart';
 import 'package:lang_bridge/src/auth/signup_page.dart';
 import 'package:lang_bridge/src/daily/daily_page.dart';
 import 'package:lang_bridge/src/entry_point/entry_point.dart';
 import 'package:lang_bridge/src/learn/pages/phrases/phrase_page.dart';
-import 'package:lang_bridge/src/activities/pages/quiz/quiz_page.dart';
+import 'package:lang_bridge/src/learn/pages/stories/pages/story_page.dart';
 import 'package:lang_bridge/src/learn/pages/stories/stories_page.dart';
 import 'package:lang_bridge/src/learn/pages/word/category_page.dart';
 import 'package:lang_bridge/src/learn/pages/word/word_page.dart';
@@ -104,12 +106,20 @@ final router = GoRouter(
               ],
             ),
             GoRoute(
-              path: RoutesDocument.learnStories,
-              pageBuilder: (context, state) => instanTransition(
-                state,
-                const StoriesPage(),
-              ),
-            ),
+                path: RoutesDocument.learnStories,
+                pageBuilder: (context, state) => instanTransition(
+                      state,
+                      const StoriesPage(),
+                    ),
+                routes: [
+                  GoRoute(
+                      path: '/:storyId',
+                      pageBuilder: (context, state) => instanTransition(
+                          state,
+                          StoryPage(
+                            story: state.extra as StoryModel,
+                          ))),
+                ]),
             GoRoute(
               path: RoutesDocument.learnPhrases,
               pageBuilder: (context, state) => instanTransition(
@@ -138,6 +148,12 @@ final router = GoRouter(
                 pageBuilder: (context, state) => instanTransition(
                       state,
                       const MemoryGamePage(),
+                    )),
+            GoRoute(
+                path: RoutesDocument.writingPractice,
+                pageBuilder: (context, state) => instanTransition(
+                      state,
+                      const WritingPracticePage(),
                     )),
           ],
         ),
@@ -185,7 +201,10 @@ class RoutesDocument {
   static const String achievements = '/achievements';
   static const String memeoryGame = '/memory-game';
 
-  static String learnWordsCategory(String id) => '/learn/words/$id';
+  static String writingPractice = '/writing-practice';
+
+  static String learnWordsCategory(String id) => '$learnWords/$id';
+  static String learnStoriesStory(String id) => '$learnStories/$id';
 }
 
 // Usage example:

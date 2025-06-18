@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/data/models/category_model.dart';
-import 'dart:math';
 
 import 'package:lang_bridge/data/providers/categories_provider.dart';
 
@@ -484,7 +483,7 @@ class GameCard {
   final String pronunciation;
   final bool isEnglish;
   final String wordId;
-  final CategoryEnum category;
+  final WordEnum category;
 
   GameCard({
     required this.id,

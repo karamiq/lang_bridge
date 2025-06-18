@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "appName": "LangBridge",
   "cancel": "Cancel",
   "changeLanguage": "Change language",
@@ -141,5 +142,76 @@
   "stories": "Stories",
   "words": "Words",
   "phrases": "Phrases",
-  "quiz": "Quiz"
+  "quiz": "Quiz",
+
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "advanced": "Advanced",
+  "read_button": "Read",
+  "duration_minutes_suffix": "{minutes} min",
+  "@duration_minutes_suffix": {
+    "description": "Story duration in minutes",
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "selectLevel": "Select Level",
+
+  "storyProgressPercnetage": "Progress {percentage}%",
+  "@storyProgressPercnetage": {
+    "description": "Progress percentage in the app",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "previous_button": "Previous",
+  "next_button": "Next",
+  "finish_button": "Finish",
+
+  "introduction": "Introduction",
+  "greetings": "Greetings",
+  "common_phrases": "Common Phrases",
+  "questions": "Questions",
+  "directions": "Directions",
+  "shopping": "Shopping",
+  "food_and_drink": "Food and Drink",
+  "travel": "Travel",
+  "emergencies": "Emergencies",
+
+  "filterByCategory": "Filter by Category",
+  "all": "All",
+
+  "submit": "Submit",
+  "next": "Next",
+  "finish": "Finish",
+  "listen": "Listen",
+  "complete": "Complete",
+  "dailyWordChallenge": "Daily Word Challenge",
+  "example": "Example",
+  "todaysProgress": "Today's Progress",
+  "challengesCompleted": "{completed} of {total} challenges completed",
+  "@challengesCompleted": {
+    "description": "Number of challenges completed out of total",
+    "placeholders": {
+      "completed": {
+        "description": "Number of completed challenges"
+      },
+      "total": {}
+    }
+  },
+
+  "review": "Review",
+  "vocabulary": "Vocabulary",
+
+  "dailyPhraseChallenge": "Daily Phrase Challenge",
+
+  "excellentWork": "Excellent Work!",
+  "completedAllChallenges": "You've completed all daily challenges!\nCome back tomorrow for more learning.",
+  "totalPoints": "Total Points: {points}",
+  "@totalPoints": {
+    "description": "Displays total points earned by the user",
+    "placeholders": {
+      "points": {}
+    }
+  }
 }

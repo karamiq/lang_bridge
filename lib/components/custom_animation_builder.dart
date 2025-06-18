@@ -4,7 +4,9 @@ class CustomAnimationBuilder extends StatefulWidget {
   const CustomAnimationBuilder({
     super.key,
     required this.builder,
+    this.duration = const Duration(milliseconds: 800),
   });
+  final Duration? duration;
   final Widget Function(AnimationController) builder;
 
   @override
@@ -17,7 +19,7 @@ class _CustomAnimationBuilderState extends State<CustomAnimationBuilder> with Si
   void initState() {
     super.initState();
     animationController = AnimationController(
-      duration: Duration(milliseconds: 800),
+      duration: widget.duration,
       vsync: this,
     )..forward();
   }

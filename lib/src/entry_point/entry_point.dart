@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:flutter/material.dart';
-import 'package:lang_bridge/src/entry_point/components/custom_app_bar.dart';
 
 /// A beautiful entry point widget that provides elegant navigation
 /// throughout the language learning journey
@@ -26,11 +25,15 @@ class _EntryPointState extends ConsumerState<EntryPoint> with TickerProviderStat
         RoutesDocument.profile,
       ];
   int _getCurrentNavigationIndex() {
-    final currentPath = GoRouterState.of(context).fullPath;
-    if (currentPath == null) return 0;
+    final currentPath = GoRouterState.of(context).matchedLocation; // Better than fullPath here
 
-    final index = _navigationPages.indexOf(currentPath);
-    return index != -1 ? index : 0;
+    if (currentPath.startsWith(RoutesDocument.learnWords)) return 0;
+    if (currentPath.startsWith(RoutesDocument.dailyPhrases)) return 1;
+    if (currentPath.startsWith(RoutesDocument.activities)) return 2;
+    if (currentPath.startsWith(RoutesDocument.leaderboard)) return 3;
+    if (currentPath.startsWith(RoutesDocument.profile)) return 4;
+
+    return 0;
   }
 
   void _navigateToSection(int index) {
@@ -44,9 +47,10 @@ class _EntryPointState extends ConsumerState<EntryPoint> with TickerProviderStat
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.child,
+      backgroundColor: context.colorScheme.primary,
+      body: SafeArea(child: widget.child),
       bottomNavigationBar: _buildBottomNavigationBar(),
-      appBar: const CustomAppBar(),
+      // appBar: const CustomAppBar(),
     );
   }
 

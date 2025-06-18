@@ -47,25 +47,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
   Widget build(BuildContext context) {
     final settings = ref.watch(settingsProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.signup),
-        backgroundColor: context.colorScheme.primary,
-        foregroundColor: context.colorScheme.onPrimary,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.settings, color: context.colorScheme.onPrimary),
-            onPressed: () {
-              ref.read(settingsProvider.notifier).toggleThemeMode(context);
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.language, color: context.colorScheme.onPrimary),
-            onPressed: () {
-              ref.read(settingsProvider.notifier).toggleLocale();
-            },
-          )
-        ],
-      ),
       backgroundColor: context.colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(

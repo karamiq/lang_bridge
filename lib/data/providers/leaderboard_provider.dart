@@ -8,31 +8,37 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 part 'leaderboard_provider.g.dart';
 
 final firestore = FirebaseFirestore.instance;
-@riverpod
+@Riverpod(keepAlive: true)
 Stream<List<AuthenticationModel>> leaderboardTopPerformancers(Ref ref) {
   return firestore
       .collection('users')
       .orderBy('points', descending: true)
+      .limit(21)
       .snapshots()
       .map((snapshot) => snapshot.docs.map((doc) {
             return AuthenticationModel.fromJson(doc.data());
           }).toList());
 }
 
-@riverpod
-Future<int> currentUserRank(Ref ref) async {
+@Riverpod(keepAlive: true)
+Stream<int> currentUserRank(Ref ref) {
   final currentUser = FirebaseAuth.instance.currentUser;
-  if (currentUser == null) return 0;
-  final topUsers = ref.watch(leaderboardTopPerformancersProvider);
+  if (currentUser == null) return Stream<int>.value(0);
 
-  return await topUsers.when(
-    data: (users) {
-      final rank = users.indexWhere((user) => user.uid == currentUser.uid);
-      return rank != -1 ? rank + 1 : 0;
-    },
-    loading: () => 0,
-    error: (_, __) => 0,
-  );
+  return firestore.collection('users').orderBy('points', descending: true).snapshots().map((snapshot) {
+    final data = snapshot.docs.map((doc) {
+      return AuthenticationModel.fromJson(doc.data());
+    }).toList();
+
+    for (int i = 0; i < data.length; i++) {
+      final user = data[i];
+      if (user.uid == currentUser.uid) {
+        return i + 1;
+      }
+    }
+
+    return 0;
+  });
 }
 
 class LeaderboardRepository {

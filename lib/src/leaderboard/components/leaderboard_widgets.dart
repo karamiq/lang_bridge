@@ -422,9 +422,7 @@ class LeaderboardItem extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isCurrentUser
-            ? context.colorScheme.primaryContainer.withOpacity(0.5)
-            : context.colorScheme.surface,
+        color: isCurrentUser ? context.colorScheme.surface.withOpacity(0.85) : context.colorScheme.surface,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
           color: isCurrentUser ? context.colorScheme.primary : context.colorScheme.outline.withOpacity(0.2),

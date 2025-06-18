@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/src/landing/components/onboarding_data_provider.dart';
 import 'package:lang_bridge/src/landing/components/page_indicator.dart';
-import 'package:lang_bridge/src/landing/landing_page.dart';
 import 'package:lang_bridge/src/landing/pages/last_page.dart';
 
 class OnboardingPages extends ConsumerStatefulWidget {
@@ -106,15 +105,6 @@ class _OnboardingPagesState extends ConsumerState<OnboardingPages> with TickerPr
                   onButtonPressed: _handleNextPage,
                 );
               },
-            ),
-          ),
-          Positioned(
-            top: 50,
-            left: 20,
-            child: SafeArea(
-              child: BackToLanguageButton(
-                onPressed: _handleBackToLanguageSelection,
-              ),
             ),
           ),
           Positioned(

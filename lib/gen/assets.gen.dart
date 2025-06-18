@@ -31,6 +31,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/book.svg
   SvgGenImage get book => const SvgGenImage('assets/svg/book.svg');
 
+  /// File path: assets/svg/book_shelf.svg
+  SvgGenImage get bookShelf => const SvgGenImage('assets/svg/book_shelf.svg');
+
   /// File path: assets/svg/calendar.svg
   SvgGenImage get calendar => const SvgGenImage('assets/svg/calendar.svg');
 
@@ -66,6 +69,7 @@ class $AssetsSvgGen {
   List<SvgGenImage> get values => [
     cameraPlus,
     book,
+    bookShelf,
     calendar,
     closedBook,
     controller,

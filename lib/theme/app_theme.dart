@@ -18,6 +18,7 @@ class AppTheme {
         appBarTheme: _buildAppBarTheme(brightness),
         cardTheme: _buildCardTheme(brightness),
         elevatedButtonTheme: _buildElevatedButtonTheme(brightness),
+        dropdownMenuTheme: _buildDropdownMenuTheme(brightness),
         fontFamily: 'thuluth');
 
     return themeData.copyWith(
@@ -59,6 +60,23 @@ class AppTheme {
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
+      ),
+    );
+  }
+
+  DropdownMenuThemeData _buildDropdownMenuTheme(Brightness brightness) {
+    return DropdownMenuThemeData(
+      inputDecorationTheme: _buildInputDecorationTheme(brightness),
+      textStyle: TextStyle(
+        color: brightness == Brightness.dark ? Colors.white : const Color(0xFF1F2937),
+      ),
+      menuStyle: MenuStyle(
+        backgroundColor: MaterialStateProperty.all(
+          brightness == Brightness.dark ? const Color(0xFF374151) : Colors.white,
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderSize.extraSmallRadius),
+        ),
       ),
     );
   }
@@ -125,16 +143,13 @@ class AppTheme {
   ColorScheme _buildColorScheme(Brightness brightness) {
     if (brightness == Brightness.dark) {
       return ColorScheme.dark(
-        // Using Duolingo-inspired dark theme colors
-        primary: AppColors.primary, // Duolingo green
+        primary: AppColors.primary,
         onPrimary: Colors.white,
-        secondary: AppColors.secondary, // Your purple
         onSecondary: Colors.white,
-        tertiary: AppColors.accent, // Your cyan
         onTertiary: Colors.white,
-        surface: const Color(0xFF1F2937), // Dark gray
-        onSurface: const Color(0xFFF9FAFB), // Light gray text
-        background: const Color(0xFF111827), // Very dark gray
+        surface: const Color(0xFF1F2937),
+        onSurface: const Color(0xFFF9FAFB),
+        background: const Color(0xFF111827),
         onBackground: const Color(0xFFF9FAFB),
         surfaceVariant: const Color(0xFF374151),
         onSurfaceVariant: const Color(0xFFD1D5DB),
@@ -144,16 +159,13 @@ class AppTheme {
       );
     } else {
       return ColorScheme.light(
-        // Using Duolingo-inspired light theme colors
-        primary: AppColors.primary, // Duolingo green
+        primary: AppColors.primary,
         onPrimary: Colors.white,
-        secondary: AppColors.secondary, // Your purple
         onSecondary: Colors.white,
-        tertiary: AppColors.accent, // Your cyan
         onTertiary: Colors.white,
         surface: Colors.white,
-        onSurface: const Color(0xFF1F2937), // Dark gray text
-        background: const Color(0xFFF9FAFB), // Very light gray
+        onSurface: const Color(0xFF1F2937),
+        background: const Color(0xFFF9FAFB),
         onBackground: const Color(0xFF1F2937),
         surfaceVariant: const Color(0xFFF3F4F6),
         onSurfaceVariant: const Color(0xFF6B7280),

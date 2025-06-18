@@ -1,238 +1,231 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:lang_bridge/common_lib.dart';
+import 'package:lang_bridge/data/models/category_model.dart';
+import 'package:lang_bridge/data/services/paginated_firestore/firestore_paging_controller.dart';
+import 'package:lang_bridge/paging/paging_list_delegate.dart';
+import 'package:lang_bridge/src/learn/pages/phrases/components/filter_bottom_sheet.dart';
+import 'package:lang_bridge/src/learn/pages/phrases/components/phrase_card.dart';
 
-class PhrasesPage extends StatefulWidget {
+class PhrasesPage extends HookConsumerWidget {
   const PhrasesPage({super.key});
 
   @override
-  createState() => _PhrasesPageState();
-}
-
-class _PhrasesPageState extends State<PhrasesPage> with TickerProviderStateMixin {
-  late AnimationController _staggerController;
-  final List<Map<String, String>> phrases = [
-    {
-      'english': 'My name is...',
-      'arabic': 'اسمي...',
-      'phonetic': '/ismi.../',
-    },
-    {
-      'english': 'I am a student',
-      'arabic': 'أنا طالب',
-      'phonetic': '/ana taalib/',
-    },
-    {
-      'english': 'What is your name?',
-      'arabic': 'ما اسمك؟',
-      'phonetic': '/ma ismuk?/',
-    },
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    _staggerController = AnimationController(
-      duration: Duration(milliseconds: 1000),
-      vsync: this,
-    )..forward();
-  }
-
-  @override
-  void dispose() {
-    _staggerController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedCategory = useState<PhraseEnum?>(null);
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Column(
-      children: [
-        // Animated Header Section
-        AnimatedBuilder(
-          animation: _staggerController,
-          builder: (context, child) {
-            return Transform.translate(
-              offset: Offset(0, 50 * (1 - _staggerController.value)),
-              child: Opacity(
-                opacity: _staggerController.value,
-                child: Container(
-                  margin: EdgeInsets.all(16),
-                  padding: EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        colorScheme.primaryContainer,
-                        colorScheme.secondaryContainer,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+    final pagingController = useMemoized(() => FirestorePagingController<CategorynModel>(
+          collection: FirebaseFirestore.instance.collection('phrases'),
+          fromJson: CategorynModel.fromJson,
+          getId: (item) => item.id,
+        ));
+
+    useEffect(() {
+      return () => pagingController.dispose();
+    }, []);
+
+    void showFilterMenu() {
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent,
+        isScrollControlled: true,
+        enableDrag: false,
+        builder: (context) => FilterBottomSheet(
+          categories: PhraseEnum.values,
+          selectedCategory: selectedCategory.value,
+          onCategorySelected: (category) {
+            selectedCategory.value = category;
+            pagingController.setFilters([
+              FirestoreFilter.isEqualTo('category', category?.toJson()),
+            ]);
+          },
+        ),
+      );
+    }
+
+    bool isAllSelected() {
+      return selectedCategory.value == null;
+    }
+
+    return Scaffold(
+      backgroundColor: colorScheme.surface,
+      appBar: AppBar(
+        backgroundColor: colorScheme.surface,
+        elevation: 0,
+        title: Container(
+          decoration: BoxDecoration(
+            color:
+                isAllSelected() ? colorScheme.surfaceContainerHighest : colorScheme.primary.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: isAllSelected()
+                  ? colorScheme.outline.withOpacity(0.3)
+                  : colorScheme.primary.withOpacity(0.3),
+            ),
+          ),
+          child: InkWell(
+            onTap: showFilterMenu,
+            borderRadius: BorderRadius.circular(16),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    selectedCategory.value?.name(context) ?? context.l10n.all,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: isAllSelected() ? colorScheme.onSurfaceVariant : colorScheme.primary,
+                      fontSize: 14,
                     ),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: colorScheme.shadow.withOpacity(0.1),
-                        blurRadius: 20,
-                        offset: Offset(0, 8),
-                      ),
-                    ],
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: 70,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              colorScheme.primary,
-                              colorScheme.secondary,
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: colorScheme.primary.withOpacity(0.3),
-                              blurRadius: 12,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Icon(
-                          Icons.chat_bubble_rounded,
-                          color: colorScheme.onPrimary,
-                          size: 32,
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      Text(
-                        'Essential Phrases',
-                        style: TextStyle(
-                          color: colorScheme.onPrimaryContainer,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Master everyday conversations',
-                        style: TextStyle(
-                          color: colorScheme.onPrimaryContainer.withOpacity(0.7),
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                  const SizedBox(width: 4),
+                  Icon(
+                    Icons.keyboard_arrow_down,
+                    size: 16,
+                    color: isAllSelected() ? colorScheme.onSurfaceVariant : colorScheme.primary,
                   ),
-                ),
+                ],
               ),
+            ),
+          ),
+        ),
+      ),
+      body: PagedListView.separated(
+        pagingController: pagingController.pagingController,
+        builderDelegate: defaultListPagedChildBuilderDelegate<CategorynModel>(
+          controller: pagingController.pagingController,
+          context: context,
+          itemBuilder: (context, phrase, index) {
+            return PhraseCard(
+              phrase: phrase,
             );
           },
         ),
+        separatorBuilder: (context, index) => const SizedBox(height: Insets.medium),
+      ),
+    );
+  }
+}
 
-        // Animated Phrases List
-        Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            itemCount: phrases.length,
-            itemBuilder: (context, index) {
-              return AnimatedBuilder(
-                animation: _staggerController,
-                builder: (context, child) {
-                  final delay = index * 0.2;
-                  final animationValue = Curves.easeOutBack.transform(
-                    math.max(0.0, (_staggerController.value - delay) / (1.0 - delay)),
-                  );
+class EmptyState extends StatelessWidget {
+  const EmptyState({
+    super.key,
+    required this.colorScheme,
+    this.selectedCategory,
+  });
 
-                  return Transform.translate(
-                    offset: Offset(0, 30 * (1 - animationValue)),
-                    child: Opacity(
-                      opacity: animationValue,
-                      child: Container(
-                        margin: EdgeInsets.only(bottom: 12),
-                        decoration: BoxDecoration(
-                          color: colorScheme.surfaceContainerHigh,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: colorScheme.outline.withOpacity(0.1),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: colorScheme.shadow.withOpacity(0.05),
-                              blurRadius: 10,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            borderRadius: BorderRadius.circular(16),
-                            onTap: () {},
-                            child: Padding(
-                              padding: EdgeInsets.all(20),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          phrases[index]['english']!,
-                                          style: TextStyle(
-                                            color: colorScheme.primary,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        SizedBox(height: 8),
-                                        Text(
-                                          phrases[index]['arabic']!,
-                                          style: TextStyle(
-                                            color: colorScheme.secondary,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                          textDirection: TextDirection.rtl,
-                                        ),
-                                        SizedBox(height: 4),
-                                        Text(
-                                          phrases[index]['phonetic']!,
-                                          style: TextStyle(
-                                            color: colorScheme.onSurface.withOpacity(0.6),
-                                            fontSize: 14,
-                                            fontStyle: FontStyle.italic,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      color: colorScheme.primaryContainer,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Icon(
-                                      Icons.volume_up_rounded,
-                                      color: colorScheme.onPrimaryContainer,
-                                      size: 20,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
+  final ColorScheme colorScheme;
+  final PhraseEnum? selectedCategory;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.search_off,
+            size: 64,
+            color: colorScheme.onSurfaceVariant,
           ),
-        ),
-      ],
+          const SizedBox(height: 16),
+          Text(
+            'No phrases found',
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: colorScheme.onSurface,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            selectedCategory == null
+                ? 'No phrases are available at the moment'
+                : 'No phrases found in ${selectedCategory!.name(context)} category',
+            style: TextStyle(color: colorScheme.onSurfaceVariant),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LoadingState extends StatelessWidget {
+  const LoadingState({
+    super.key,
+    required this.colorScheme,
+  });
+
+  final ColorScheme colorScheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(
+            color: colorScheme.primary,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Loading phrases...',
+            style: TextStyle(
+              color: colorScheme.onSurfaceVariant,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ErrorState extends StatelessWidget {
+  const ErrorState({
+    super.key,
+    required this.colorScheme,
+    required this.onRetry,
+    this.errorMessage,
+  });
+
+  final ColorScheme colorScheme;
+  final VoidCallback onRetry;
+  final String? errorMessage;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.error_outline,
+            size: 64,
+            color: colorScheme.error,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Failed to load phrases',
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  color: colorScheme.onSurface,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            errorMessage ?? 'Something went wrong. Please try again.',
+            style: TextStyle(color: colorScheme.onSurfaceVariant),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 24),
+          FilledButton(
+            onPressed: onRetry,
+            child: const Text('Retry'),
+          ),
+        ],
+      ),
     );
   }
 }

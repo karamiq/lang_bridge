@@ -20,6 +20,7 @@ mixin _$CategorynModel {
   String get arabic;
   String get arabicPronunciation;
   String get englishPronunciation;
+  @CategoryEnumConverter()
   CategoryEnum get category;
 
   /// Create a copy of CategorynModel
@@ -72,7 +73,7 @@ abstract mixin class $CategorynModelCopyWith<$Res> {
       String arabic,
       String arabicPronunciation,
       String englishPronunciation,
-      CategoryEnum category});
+      @CategoryEnumConverter() CategoryEnum category});
 }
 
 /// @nodoc
@@ -126,16 +127,15 @@ class _$CategorynModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-@jsonSerializable
-class _CategorynModel extends CategorynModel {
+@JsonSerializable()
+class _CategorynModel implements CategorynModel {
   const _CategorynModel(
       {required this.id,
       required this.english,
       required this.arabic,
       required this.arabicPronunciation,
       required this.englishPronunciation,
-      required this.category})
-      : super._();
+      @CategoryEnumConverter() required this.category});
   factory _CategorynModel.fromJson(Map<String, dynamic> json) =>
       _$CategorynModelFromJson(json);
 
@@ -150,6 +150,7 @@ class _CategorynModel extends CategorynModel {
   @override
   final String englishPronunciation;
   @override
+  @CategoryEnumConverter()
   final CategoryEnum category;
 
   /// Create a copy of CategorynModel
@@ -208,7 +209,7 @@ abstract mixin class _$CategorynModelCopyWith<$Res>
       String arabic,
       String arabicPronunciation,
       String englishPronunciation,
-      CategoryEnum category});
+      @CategoryEnumConverter() CategoryEnum category});
 }
 
 /// @nodoc

@@ -1,3 +1,5 @@
+import 'package:lang_bridge/data/providers/authentication_provider.dart';
+import 'package:lang_bridge/data/providers/streak_provider.dart';
 import 'package:lang_bridge/main.dart';
 import 'package:lang_bridge/router/app_router.dart';
 import 'package:lang_bridge/data/providers/settings_provider.dart';
@@ -18,33 +20,37 @@ class App extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _AppState();
 }
 
-class _AppState extends ConsumerState<App> {
-  // @override
-  // void initState() {
-  //   super.initState();
+class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _setupUserListeners();
+  }
 
-  //   initializeFirebaseMessaging();
-  //   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-  //     debugPrint("remote message received: ${message.messageId}");
-  //     debugPrint("notification received: ${message.notification?.body}");
-  //     if (message.notification != null) {
-  //       LocalNotificationsServices.showNotification(message);
-  //     }
-  //   });
-  // }
+  void _setupUserListeners() {
+    WidgetsBinding.instance.scheduleFrameCallback((_) async {
+      final user = ref.read(authenticationProvider);
+      if (user != null) {
+        final listener = UserListenerService(ref);
+        listener.listenToUserDoc(user.uid);
+        await listener.checkAndUpdateStreak(user.uid);
+      }
+    });
+  }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance.scheduleFrameCallback((timeStamp) async {
-  //     await ref
-  //         .read(getIsarInstanceProvider(const [PostSchemeSchema]).future)
-  //         .then((isar) {
-  //       debugPrint("this is isar instance: ${isar.path}");
-  //       CacheManager().clearCacheAndDatabase(isar);
-  //     }); // Open the Isar instance
-  //   });
-  // }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _setupUserListeners();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +62,6 @@ class _AppState extends ConsumerState<App> {
       debugShowCheckedModeBanner: false,
       routerConfig: router,
       scaffoldMessengerKey: Utils.messengerKey,
-      // Locale
       locale: settings.locale,
       onGenerateTitle: (context) => context.l10n.appName,
       localizationsDelegates: const [
@@ -65,7 +70,6 @@ class _AppState extends ConsumerState<App> {
         // KurdishWidgetLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      // Theme
       themeMode: settings.themeMode,
       darkTheme: theme.buildDarkTheme(),
       theme: theme.buildLightTheme(),

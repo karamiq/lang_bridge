@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:lang_bridge/common_lib.dart';
 
-class PhraseCard extends StatefulWidget {
+class WordCard extends StatefulWidget {
   final String english;
   final String arabic;
   final String arabicPronunciation;
   final String englishPronunciation;
 
-  const PhraseCard({
+  const WordCard({
     super.key,
     required this.english,
     required this.arabic,
@@ -17,10 +17,10 @@ class PhraseCard extends StatefulWidget {
   });
 
   @override
-  State<PhraseCard> createState() => _PhraseCardState();
+  State<WordCard> createState() => _WordCardState();
 }
 
-class _PhraseCardState extends State<PhraseCard> {
+class _WordCardState extends State<WordCard> {
   late FlutterTts flutterTts;
   bool isPlayingEnglish = false;
   bool isPlayingArabic = false;
@@ -90,17 +90,9 @@ class _PhraseCardState extends State<PhraseCard> {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderSize.extraSmallRadius,
-        boxShadow: [
-          BoxShadow(
-            color: colorScheme.shadow.withOpacity(0.15),
-            spreadRadius: 0,
-            blurRadius: 20,
-            offset: const Offset(0, 4),
-          ),
-        ],
         border: Border.all(
-          color: colorScheme.outline.withOpacity(0.1),
-          width: 1,
+          color: colorScheme.outline.withOpacity(.5),
+          width: 2,
         ),
       ),
       child: Material(

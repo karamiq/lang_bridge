@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
+import 'package:lang_bridge/components/custom_animation_builder.dart';
 import 'package:lang_bridge/src/learn/components/upper_navigation_button.dart';
 
 class UpperNavigationBar extends StatefulWidget {
@@ -19,44 +20,16 @@ class UpperNavigationBar extends StatefulWidget {
 }
 
 class _UpperNavigationBarState extends State<UpperNavigationBar> with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _scaleAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _animationController = AnimationController(
-      duration: Duration(milliseconds: 300),
-      vsync: this,
-    );
-
-    _scaleAnimation = Tween<double>(
-      begin: 0.95,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.elasticOut,
-    ));
-
-    _animationController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _scaleAnimation,
-      builder: (context, child) {
+    return CustomAnimationBuilder(
+      duration: Duration(milliseconds: 200),
+      builder: (scaleAnimation) {
         return Transform.scale(
-          scale: _scaleAnimation.value,
+          scale: scaleAnimation.value,
           child: Container(
-            margin: EdgeInsets.all(16),
+            alignment: Alignment.center,
+            margin: Insets.smallAll,
             padding: EdgeInsets.all(6),
             decoration: BoxDecoration(
               color: context.colorScheme.surfaceContainerHighest,
@@ -94,6 +67,8 @@ class _UpperNavigationBarState extends State<UpperNavigationBar> with TickerProv
         onTap: () => widget.onTabChanged(index),
         child: AnimatedContainer(
           padding: Insets.smallAll,
+          alignment: Alignment.center,
+          transformAlignment: Alignment.center,
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOutCubic,
           margin: EdgeInsets.symmetric(horizontal: 4),
@@ -122,10 +97,12 @@ class _UpperNavigationBarState extends State<UpperNavigationBar> with TickerProv
           child: Material(
             color: Colors.transparent,
             child: Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 AnimatedContainer(
                     transformAlignment: Alignment.center,
+                    alignment: Alignment.center,
                     duration: Duration(milliseconds: 300),
                     transform: Matrix4.identity()..scale(isSelected ? 1.2 : 1.0),
                     child: Container(
@@ -142,17 +119,15 @@ class _UpperNavigationBarState extends State<UpperNavigationBar> with TickerProv
                         height: isSelected ? 24 : 22,
                         fit: BoxFit.contain,
                         colorFilter: ColorFilter.mode(
-                          isSelected
-                              ? context.colorScheme.onPrimary
-                              : context.colorScheme.onPrimary.withOpacity(0.7),
+                          isSelected ? colorScheme.onPrimary : colorScheme.onSurface.withOpacity(0.6),
                           BlendMode.srcIn,
                         ),
                       ),
                     )),
-                SizedBox(height: Insets.small),
                 AnimatedDefaultTextStyle(
                   duration: Duration(milliseconds: 300),
                   style: TextStyle(
+                    fontFamily: context.textTheme.bodyMedium?.fontFamily,
                     color: isSelected ? colorScheme.onPrimary : colorScheme.onSurface.withOpacity(0.6),
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
                     fontSize: isSelected ? 13 : 12,

@@ -6,15 +6,15 @@ import 'package:lang_bridge/utils/widgets/carousel/dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class Carousel extends StatefulWidget {
+class ImageCarousel extends StatefulWidget {
   final List<String> ads;
-  const Carousel({super.key, required this.ads});
+  const ImageCarousel({super.key, required this.ads});
 
   @override
-  State<Carousel> createState() => _CarouselState();
+  State<ImageCarousel> createState() => _ImageCarouselState();
 }
 
-class _CarouselState extends State<Carousel> {
+class _ImageCarouselState extends State<ImageCarousel> {
   int _selectedIndex = 0;
   late PageController _pageController;
   late Timer _timer;

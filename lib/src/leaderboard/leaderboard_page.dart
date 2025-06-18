@@ -24,7 +24,6 @@ class LeaderboardPage extends HookConsumerWidget {
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (_, __) => ElevatedButton(
                 onPressed: () {
-                  // ignore: unused_result
                   ref.invalidate(currentUserRankProvider);
                 },
                 child: Text(context.l10n.retry),
@@ -89,9 +88,12 @@ class LeaderboardPage extends HookConsumerWidget {
                   ),
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
-                      (context, index) =>
-                          LeaderboardItem(isCurrentUser: false, rank: index + 3, user: users[index]),
-                      childCount: users.length - 3,
+                      (context, index) {
+                        final user = users[index + 3];
+                        final rank = index + 4;
+                        return LeaderboardItem(isCurrentUser: false, rank: rank, user: user);
+                      },
+                      childCount: users.length > 3 ? users.length - 3 : 0,
                     ),
                   ),
                   SliverToBoxAdapter(

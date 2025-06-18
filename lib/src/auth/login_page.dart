@@ -6,7 +6,6 @@ import 'package:lang_bridge/data/providers/auth_provider.dart';
 import 'package:lang_bridge/data/providers/settings_provider.dart';
 import 'package:lang_bridge/data/services/firebase/errors.dart';
 import 'package:lang_bridge/src/auth/components/auth_shared_content.dart';
-import 'package:lang_bridge/theme/theme_mode.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -31,27 +30,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Widget build(BuildContext context) {
     final settings = ref.watch(settingsProvider);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.login),
-        backgroundColor: context.colorScheme.primary,
-        foregroundColor: context.colorScheme.onPrimary,
-        actions: [
-          IconButton(
-            icon: settings.themeMode.isDark
-                ? Icon(Icons.dark_mode, color: context.colorScheme.onPrimary)
-                : Icon(Icons.light_mode, color: context.colorScheme.onPrimary),
-            onPressed: () {
-              ref.read(settingsProvider.notifier).toggleThemeMode(context);
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.language, color: context.colorScheme.onPrimary),
-            onPressed: () {
-              ref.read(settingsProvider.notifier).toggleLocale();
-            },
-          )
-        ],
-      ),
       backgroundColor: context.colorScheme.surface,
       body: SafeArea(
         child: SingleChildScrollView(

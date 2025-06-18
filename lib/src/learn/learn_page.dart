@@ -20,11 +20,13 @@ class _LearnPage extends ConsumerState<LearnPage> {
       ];
 
   int _getCurrentNavigationIndex() {
-    final currentPath = GoRouterState.of(context).fullPath;
-    if (currentPath == null) return 0;
+    final currentPath = GoRouterState.of(context).matchedLocation; // Better than fullPath here
 
-    final index = _navigationPages.indexOf(currentPath);
-    return index != -1 ? index : 0;
+    if (currentPath.startsWith(RoutesDocument.learnWords)) return 0;
+    if (currentPath.startsWith(RoutesDocument.learnStories)) return 1;
+    if (currentPath.startsWith(RoutesDocument.learnPhrases)) return 2;
+
+    return 0;
   }
 
   void _navigateToSection(int index) {
@@ -58,7 +60,11 @@ class _LearnPage extends ConsumerState<LearnPage> {
               ),
             ],
           ),
-          Expanded(child: widget.child),
+          Expanded(
+              child: Padding(
+            padding: Insets.mediumAll,
+            child: widget.child,
+          )),
         ],
       ),
     );

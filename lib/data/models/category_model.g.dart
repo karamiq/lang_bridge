@@ -13,7 +13,8 @@ _CategorynModel _$CategorynModelFromJson(Map<String, dynamic> json) =>
       arabic: json['arabic'] as String,
       arabicPronunciation: json['arabicPronunciation'] as String,
       englishPronunciation: json['englishPronunciation'] as String,
-      category: CategoryEnum.fromJson(json['category'] as String),
+      category:
+          const CategoryEnumConverter().fromJson(json['category'] as String),
     );
 
 Map<String, dynamic> _$CategorynModelToJson(_CategorynModel instance) =>
@@ -23,14 +24,26 @@ Map<String, dynamic> _$CategorynModelToJson(_CategorynModel instance) =>
       'arabic': instance.arabic,
       'arabicPronunciation': instance.arabicPronunciation,
       'englishPronunciation': instance.englishPronunciation,
-      'category': instance.category.toJson(),
+      'category': const CategoryEnumConverter().toJson(instance.category),
     };
 
-const _$CategoryEnumEnumMap = {
-  CategoryEnum.animals: 'animals',
-  CategoryEnum.colors: 'colors',
-  CategoryEnum.numbers: 'numbers',
-  CategoryEnum.family: 'family',
-  CategoryEnum.school: 'school',
-  CategoryEnum.food: 'food',
+const _$PhraseEnumEnumMap = {
+  PhraseEnum.introduction: 'introduction',
+  PhraseEnum.greetings: 'greetings',
+  PhraseEnum.commonPhrases: 'common_phrases',
+  PhraseEnum.questions: 'questions',
+  PhraseEnum.directions: 'directions',
+  PhraseEnum.shopping: 'shopping',
+  PhraseEnum.foodAndDrink: 'food_and_drink',
+  PhraseEnum.travel: 'travel',
+  PhraseEnum.emergencies: 'emergencies',
+};
+
+const _$WordEnumEnumMap = {
+  WordEnum.animals: 'animals',
+  WordEnum.colors: 'colors',
+  WordEnum.numbers: 'numbers',
+  WordEnum.family: 'family',
+  WordEnum.school: 'school',
+  WordEnum.food: 'food',
 };

@@ -54,7 +54,6 @@ class _WordsPageState extends ConsumerState<WordsPage> with TickerProviderStateM
     BuildContext context,
   ) {
     return ListView.builder(
-      padding: EdgeInsets.symmetric(horizontal: 16),
       itemCount: categories.length,
       itemBuilder: (context, index) {
         return CustomAnimationBuilder(
