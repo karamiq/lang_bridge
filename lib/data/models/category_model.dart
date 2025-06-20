@@ -45,7 +45,6 @@ abstract class CategorynModel with _$CategorynModel {
   factory CategorynModel.fromJson(Map<String, dynamic> json) => _$CategorynModelFromJson(json);
 }
 
-// Base interface for all category enums
 abstract class CategoryEnum {
   String get jsonValue;
   String toJson() => jsonValue;

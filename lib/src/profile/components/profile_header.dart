@@ -30,7 +30,7 @@ class ProfileHeader extends StatelessWidget {
           ProfileAvatar(profile: profile),
           const SizedBox(height: 15),
           Text(
-            profile.fullName,
+            profile.fullName.split(' ').first,
             style: TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,

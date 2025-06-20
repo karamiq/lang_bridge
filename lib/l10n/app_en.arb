@@ -108,7 +108,7 @@
     "appVersionInfo": "App version and info",
     "logout": "Logout",
     "signOut": "Sign out of your account",
-    "helpAndSupportPressed": "Help & Support pressed",
+    "helpAndSupportDetails": "If you need help or support, you can contact us at: fs58fryfbyqc@gmail.com",
 
 
     "points": "Points",
@@ -213,5 +213,26 @@
     "placeholders": {
       "points": {}
     }
-  }
+  },
+
+  "congratulations": "🎉 Congratulations!",
+  "gameCompletedMoves": "Game completed in {moves} moves!",
+  "@gameCompletedMoves": {
+    "description": "Message showing the number of moves taken to complete the game",
+    "placeholders": {
+      "moves": {}
+    }
+  },
+  "timeLabel": "Time: {time}",
+  "@timeLabel": {
+    "description": "Label for game time duration",
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "playAgain": "Play Again",
+  "moves": "Moves",
+  "matches": "Matches",
+  "time": "Time",
+   "matchWordsInstruction": "Match the words in English and Arabic"
 }

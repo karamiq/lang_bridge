@@ -111,7 +111,7 @@ final updateProgressProvider =
 );
 
 typedef _$UpdateProgress = AutoDisposeAsyncNotifier<AsyncX<dynamic>>;
-String _$dailyHash() => r'cc2def0529d47b60875921ff54a24b438504d8e8';
+String _$dailyHash() => r'68b5a85994990e5b87f174fa00daccfbfbe702eb';
 
 /// See also [Daily].
 @ProviderFor(Daily)

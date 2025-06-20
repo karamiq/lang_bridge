@@ -51,7 +51,7 @@ class ActivitiesPage extends StatelessWidget {
                     icon: Icons.headphones,
                     iconColor: colorScheme.tertiary,
                     onTap: () {
-                      context.push('/listening-practice');
+                      context.push(RoutesDocument.activities + RoutesDocument.listeningPractice);
                     },
                   ),
                   const SizedBox(height: 16),

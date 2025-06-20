@@ -77,11 +77,12 @@ class DailyContent extends HookConsumerWidget {
                 completedChallenges: progressList.value,
                 totalPoints: progress.totalPoints,
               ),
+              const SizedBox(height: Insets.small),
               ChallengesGrid(
                 completedChallenges: progressList.value,
                 progress: progress,
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: Insets.small),
               CurrentChallengeDetail(
                   progress: progress,
                   progressList: progressList,

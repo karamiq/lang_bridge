@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lang_bridge/data/providers/authentication_provider.dart';
+import 'package:lang_bridge/src/entry_point/components/streak_dialog.dart';
 import 'package:lang_bridge/utils/snackbar.dart';
 
 class UserListenerService {
@@ -69,7 +70,6 @@ class StreakUpdater {
     } else {
       currentStreak = 1;
     }
-
     await docRef.update({
       'lastOpenedDate': today,
       'streak': currentStreak,
@@ -83,7 +83,15 @@ class StreakUpdater {
     }
 
     if (currentStreak > previousStreak) {
-      StreakFeedback.showStreakSnackbar(currentStreak);
+      showDialog(
+          context: ref.context,
+          builder: (_) {
+            return Dialog(
+                backgroundColor: Colors.transparent,
+                child: StreakDialog(
+                  streakCount: previousStreak,
+                ));
+          });
     }
   }
 }

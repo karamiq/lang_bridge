@@ -1,5 +1,3 @@
-import 'package:lang_bridge/data/providers/authentication_provider.dart';
-import 'package:lang_bridge/data/providers/streak_provider.dart';
 import 'package:lang_bridge/main.dart';
 import 'package:lang_bridge/router/app_router.dart';
 import 'package:lang_bridge/data/providers/settings_provider.dart';
@@ -20,38 +18,7 @@ class App extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _AppState();
 }
 
-class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-    _setupUserListeners();
-  }
-
-  void _setupUserListeners() {
-    WidgetsBinding.instance.scheduleFrameCallback((_) async {
-      final user = ref.read(authenticationProvider);
-      if (user != null) {
-        final listener = UserListenerService(ref);
-        listener.listenToUserDoc(user.uid);
-        await listener.checkAndUpdateStreak(user.uid);
-      }
-    });
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      _setupUserListeners();
-    }
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
+class _AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     final theme = AppTheme();

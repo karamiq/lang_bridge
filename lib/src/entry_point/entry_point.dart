@@ -1,6 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:flutter/material.dart';
+import 'package:lang_bridge/data/providers/authentication_provider.dart';
+import 'package:lang_bridge/data/providers/streak_provider.dart';
 
 /// A beautiful entry point widget that provides elegant navigation
 /// throughout the language learning journey
@@ -16,7 +18,8 @@ class EntryPoint extends StatefulHookConsumerWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _EntryPointState();
 }
 
-class _EntryPointState extends ConsumerState<EntryPoint> with TickerProviderStateMixin {
+class _EntryPointState extends ConsumerState<EntryPoint>
+    with WidgetsBindingObserver, TickerProviderStateMixin {
   List<String> get _navigationPages => [
         RoutesDocument.learnWords,
         RoutesDocument.dailyPhrases,
@@ -42,6 +45,37 @@ class _EntryPointState extends ConsumerState<EntryPoint> with TickerProviderStat
 
       GoRouter.of(context).go(_navigationPages[index]);
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _setupUserListeners();
+  }
+
+  void _setupUserListeners() {
+    WidgetsBinding.instance.scheduleFrameCallback((_) async {
+      final user = ref.read(authenticationProvider);
+      if (user != null) {
+        final listener = UserListenerService(ref);
+        listener.listenToUserDoc(user.uid);
+        await listener.checkAndUpdateStreak(user.uid);
+      }
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _setupUserListeners();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override

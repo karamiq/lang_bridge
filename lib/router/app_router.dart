@@ -1,6 +1,7 @@
 import 'package:lang_bridge/data/models/story_model.dart';
 import 'package:lang_bridge/data/shared_preference/preferences.dart';
 import 'package:lang_bridge/router/routing_animation.dart';
+import 'package:lang_bridge/src/activities/pages/listening_practice.dart/listening_practice_page.dart';
 import 'package:lang_bridge/src/activities/pages/memory_game/memory_game_page.dart';
 import 'package:lang_bridge/src/activities/pages/writing_practice/writing_practice_page.dart';
 import 'package:lang_bridge/src/auth/login_page.dart';
@@ -155,6 +156,12 @@ final router = GoRouter(
                       state,
                       const WritingPracticePage(),
                     )),
+            GoRoute(
+                path: RoutesDocument.listeningPractice,
+                pageBuilder: (context, state) => instanTransition(
+                      state,
+                      const ListeningPracticePage(),
+                    )),
           ],
         ),
         GoRoute(
@@ -200,7 +207,7 @@ class RoutesDocument {
 
   static const String achievements = '/achievements';
   static const String memeoryGame = '/memory-game';
-
+  static const String listeningPractice = '/listening-practice';
   static String writingPractice = '/writing-practice';
 
   static String learnWordsCategory(String id) => '$learnWords/$id';

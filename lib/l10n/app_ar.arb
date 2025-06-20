@@ -96,7 +96,7 @@
     "appVersionInfo": "إصدار التطبيق والمعلومات",
     "logout": "تسجيل الخروج",
     "signOut": "تسجيل الخروج من الحساب",
-    "helpAndSupportPressed": "تم الضغط على المساعدة والدعم",
+    "helpAndSupportDetails": "إذا كنت بحاجة إلى مساعدة أو دعم، يمكنك التواصل معنا عبر البريد الإلكتروني:fs58fryfbyqc@gmail.com",
 
     "points": "النقاط",
     "streak": "المسار",
@@ -197,8 +197,28 @@
       "placeholders": {
         "points": {}
       }
-    }
+    },
 
-
+    
+    "congratulations": "🎉 تهانينا!",
+    "gameCompletedMoves": "اكتملت اللعبة في {moves} حركة!",
+    "@gameCompletedMoves": {
+      "description": "رسالة تعرض عدد الحركات التي اكتملت فيها اللعبة",
+      "placeholders": {
+        "moves": {}
+      }
+    },
+    "timeLabel": "الوقت: {time}",
+    "@timeLabel": {
+      "description": "عرض مدة اللعبة",
+      "placeholders": {
+        "time": {}
+      }
+    },
+    "playAgain": "العب مرة أخرى",
+    "moves": "الحركات",
+    "matches": "التطابقات",
+    "time": "الوقت",
+     "matchWordsInstruction": "طابق الكلمات بالإنجليزية والعربية"
 
 }

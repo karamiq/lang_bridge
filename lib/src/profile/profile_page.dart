@@ -125,7 +125,7 @@ class ProfilePage extends ConsumerWidget {
 
   void _showHelpSnackbar(BuildContext context) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(context.l10n.helpAndSupportPressed)),
+      SnackBar(content: Text(context.l10n.helpAndSupportDetails)),
     );
   }
 }

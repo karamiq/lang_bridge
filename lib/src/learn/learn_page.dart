@@ -21,7 +21,6 @@ class _LearnPage extends ConsumerState<LearnPage> {
 
   int _getCurrentNavigationIndex() {
     final currentPath = GoRouterState.of(context).matchedLocation; // Better than fullPath here
-
     if (currentPath.startsWith(RoutesDocument.learnWords)) return 0;
     if (currentPath.startsWith(RoutesDocument.learnStories)) return 1;
     if (currentPath.startsWith(RoutesDocument.learnPhrases)) return 2;

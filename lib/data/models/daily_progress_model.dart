@@ -19,22 +19,3 @@ abstract class DailyProgressModel with _$DailyProgressModel {
   @override
   Map<String, dynamic> toJson() => _$DailyProgressModelToJson(this as _DailyProgressModel);
 }
-
-// models/quiz_state_model.dart
-@freezed
-abstract class QuizStateModel with _$QuizStateModel {
-  @jsonSerializable
-  const factory QuizStateModel({
-    required int? selectedAnswer,
-    required bool showResult,
-    required bool? isCorrect,
-    required int earnedPoints,
-  }) = _QuizStateModel;
-
-  factory QuizStateModel.initial() => const QuizStateModel(
-        selectedAnswer: null,
-        showResult: false,
-        isCorrect: null,
-        earnedPoints: 0,
-      );
-}

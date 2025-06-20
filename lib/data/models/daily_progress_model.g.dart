@@ -33,19 +33,3 @@ Map<String, dynamic> _$DailyProgressModelToJson(_DailyProgressModel instance) =>
           instance.vocabularyEntries.map((e) => e.toJson()).toList(),
       'isComplete': instance.isComplete,
     };
-
-_QuizStateModel _$QuizStateModelFromJson(Map<String, dynamic> json) =>
-    _QuizStateModel(
-      selectedAnswer: (json['selectedAnswer'] as num?)?.toInt(),
-      showResult: json['showResult'] as bool,
-      isCorrect: json['isCorrect'] as bool?,
-      earnedPoints: (json['earnedPoints'] as num).toInt(),
-    );
-
-Map<String, dynamic> _$QuizStateModelToJson(_QuizStateModel instance) =>
-    <String, dynamic>{
-      'selectedAnswer': instance.selectedAnswer,
-      'showResult': instance.showResult,
-      'isCorrect': instance.isCorrect,
-      'earnedPoints': instance.earnedPoints,
-    };
