@@ -1,10 +1,4 @@
 # This is a generated file; do not edit or check into version control.
-audioplayers=/Users/karam/.pub-cache/hosted/pub.dev/audioplayers-6.4.0/
-audioplayers_android=/Users/karam/.pub-cache/hosted/pub.dev/audioplayers_android-5.2.0/
-audioplayers_darwin=/Users/karam/.pub-cache/hosted/pub.dev/audioplayers_darwin-6.2.0/
-audioplayers_linux=/Users/karam/.pub-cache/hosted/pub.dev/audioplayers_linux-4.2.0/
-audioplayers_web=/Users/karam/.pub-cache/hosted/pub.dev/audioplayers_web-5.1.0/
-audioplayers_windows=/Users/karam/.pub-cache/hosted/pub.dev/audioplayers_windows-4.2.0/
 cloud_firestore=/Users/karam/.pub-cache/hosted/pub.dev/cloud_firestore-5.6.8/
 cloud_firestore_web=/Users/karam/.pub-cache/hosted/pub.dev/cloud_firestore_web-4.4.8/
 file_selector_linux=/Users/karam/.pub-cache/hosted/pub.dev/file_selector_linux-0.9.3+2/

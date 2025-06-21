@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
-import 'package:lang_bridge/src/activities/components/game_card.dart';
+import 'package:lang_bridge/src/activities/components/game_card/game_card.dart';
 
 class ActivitiesPage extends StatelessWidget {
   const ActivitiesPage({super.key});
@@ -36,42 +36,40 @@ class ActivitiesPage extends StatelessWidget {
               child: ListView(
                 children: [
                   GameCard(
-                    title: context.l10n.targetPracticeTitle,
-                    subtitle: context.l10n.targetPracticeSubtitle,
-                    icon: Icons.gps_fixed,
-                    iconColor: colorScheme.secondary,
+                    title: context.l10n.memoryGameTitle,
+                    icon: Icons.shuffle,
+                    iconColor: colorScheme.tertiary,
                     onTap: () {
-                      context.push('/target-practice');
+                      context.push('${RoutesDocument.activities}${RoutesDocument.memeoryGame}');
                     },
                   ),
                   const SizedBox(height: 16),
                   GameCard(
                     title: context.l10n.listeningPracticeTitle,
-                    subtitle: context.l10n.listeningPracticeSubtitle,
                     icon: Icons.headphones,
-                    iconColor: colorScheme.tertiary,
+                    iconColor: Colors.blueAccent,
                     onTap: () {
                       context.push(RoutesDocument.activities + RoutesDocument.listeningPractice);
                     },
                   ),
-                  const SizedBox(height: 16),
+                  const Gap(Insets.medium),
                   GameCard(
-                    title: context.l10n.writingPracticeTitle,
-                    subtitle: context.l10n.writingPracticeSubtitle,
-                    icon: Icons.edit,
-                    iconColor: colorScheme.primary,
-                    onTap: () {
-                      context.push(RoutesDocument.activities + RoutesDocument.writingPractice);
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  GameCard(
-                    title: context.l10n.memoryGameTitle,
-                    subtitle: context.l10n.memoryGameSubtitle,
-                    icon: Icons.shuffle,
+                    title: context.l10n.targetPracticeTitle,
+                    isLocked: true,
+                    icon: Icons.gps_fixed,
                     iconColor: colorScheme.secondary,
                     onTap: () {
-                      context.push('${RoutesDocument.activities}${RoutesDocument.memeoryGame}');
+                      context.push(RoutesDocument.activities + RoutesDocument.target);
+                    },
+                  ),
+                  const Gap(Insets.medium),
+                  GameCard(
+                    title: context.l10n.writingPracticeTitle,
+                    isEnabled: false,
+                    icon: Icons.edit,
+                    iconColor: colorScheme.surface,
+                    onTap: () {
+                      context.push(RoutesDocument.activities + RoutesDocument.writingPractice);
                     },
                   ),
                 ],

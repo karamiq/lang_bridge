@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lang_bridge/data/models/authentication_model.dart';
+import 'package:lang_bridge/data/providers/provider.dart';
+import 'package:lang_bridge/data/shared_preference/preferences.dart';
 import '../services/clients/_clients.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,6 +35,8 @@ Stream<int> currentUserRank(Ref ref) {
     for (int i = 0; i < data.length; i++) {
       final user = data[i];
       if (user.uid == currentUser.uid) {
+        ref.read(sharedPreferencesProvider).setInt(Preferences.userRankCache, i + 1);
+
         return i + 1;
       }
     }

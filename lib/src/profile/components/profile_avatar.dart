@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/data/models/authentication_model.dart';
 import 'package:lang_bridge/src/profile/components/uid_to_color.dart';
+import 'package:lang_bridge/utils/extensions.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final AuthenticationModel profile;
@@ -15,11 +16,9 @@ class ProfileAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return CircleAvatar(
       radius: radius,
-      backgroundColor: colorScheme.onPrimary,
+      backgroundColor: context.theme.scaffoldBackgroundColor.withOpacity(0.7),
       child: CircleAvatar(
         radius: radius - 5,
         backgroundColor: ColorUtils.uidToColor(profile.uid),

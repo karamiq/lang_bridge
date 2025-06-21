@@ -22,8 +22,6 @@ class WordCard extends StatefulWidget {
 
 class _WordCardState extends State<WordCard> {
   late FlutterTts flutterTts;
-  bool isPlayingEnglish = false;
-  bool isPlayingArabic = false;
 
   @override
   void initState() {
@@ -33,12 +31,7 @@ class _WordCardState extends State<WordCard> {
   }
 
   _initTts() async {
-    flutterTts.setCompletionHandler(() {
-      setState(() {
-        isPlayingEnglish = false;
-        isPlayingArabic = false;
-      });
-    });
+    flutterTts.setCompletionHandler(() {});
   }
 
   @override
@@ -48,28 +41,15 @@ class _WordCardState extends State<WordCard> {
   }
 
   Future<void> _speakEnglish() async {
-    if (isPlayingEnglish) return;
+    print("Speaking English: ${widget.english}");
+    await flutterTts.setLanguage("en");
 
-    setState(() {
-      isPlayingEnglish = true;
-      isPlayingArabic = false;
-    });
-
-    await flutterTts.setLanguage("en-US");
-    await flutterTts.setSpeechRate(0.5);
     await flutterTts.speak(widget.english);
   }
 
   Future<void> _speakArabic() async {
-    if (isPlayingArabic) return;
+    await flutterTts.setLanguage("ar");
 
-    setState(() {
-      isPlayingArabic = true;
-      isPlayingEnglish = false;
-    });
-
-    await flutterTts.setLanguage("ar-SA");
-    await flutterTts.setSpeechRate(0.5);
     await flutterTts.speak(widget.arabic);
   }
 

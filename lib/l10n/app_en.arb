@@ -269,6 +269,9 @@
 "wordComparison": "Word Comparison:",
 
 "testCompleted": "Test Completed!",
-"startNewPractice": "Start New Practice"
+"startNewPractice": "Start New Practice",
+
+"locked": "Locked",
+"play": "Play"
 
 }

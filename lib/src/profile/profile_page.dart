@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/data/providers/authentication_provider.dart';
@@ -18,11 +20,11 @@ class ProfilePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = context.colorScheme;
     final settings = ref.watch(settingsProvider);
-    final profile = ref.watch(authenticationProvider);
+    final profile = ref.watch(authenticationProvider)!;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     Widget buildAccountSettingsSection(
       BuildContext context,
-      WidgetRef ref,
     ) {
       return ProfileSectionCard(
         title: context.l10n.accountSettings,
@@ -32,7 +34,7 @@ class ProfilePage extends ConsumerWidget {
             title: context.l10n.darkMode,
             subtitle: context.l10n.themeDark,
             trailing: Switch(
-              value: settings.themeMode.isDark,
+              value: isDark,
               onChanged: (value) {
                 ref.read(settingsProvider.notifier).toggleThemeMode(context);
               },
@@ -41,16 +43,10 @@ class ProfilePage extends ConsumerWidget {
           ProfileActionTile(
             icon: Icons.language,
             title: context.l10n.changeLanguage,
-            subtitle: settings.locale!.languageCode.toUpperCase(),
+            subtitle: settings.locale?.languageCode.toUpperCase() ?? context.l10n.defaultErrorMessage,
             onTap: () => _showLanguageDialog(context),
           ),
         ],
-      );
-    }
-
-    if (profile == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
       );
     }
 
@@ -64,7 +60,7 @@ class ProfilePage extends ConsumerWidget {
             ProfileStatsCard(profile: profile),
             const SizedBox(height: 20),
             PersonalInformationSection(profile: profile),
-            buildAccountSettingsSection(context, ref),
+            buildAccountSettingsSection(context),
             _buildSupportSection(context),
             const SizedBox(height: 30),
           ],

@@ -43,20 +43,12 @@ class UpdateProgress extends _$UpdateProgress with AsyncXNotifierMixin<dynamic> 
 Future<List<SayingModel>> dailySaying(Ref ref) async {
   final snapshot = await firestore.collection('sayings').get();
   var sayings = snapshot.docs.map((doc) => SayingModel.fromJson(doc.data())).toList();
-  if (sayings.length <= 7) {
-    return sayings;
-  }
-  final now = DateTime.now();
-  final daySeed =
-      int.parse("${now.year}${now.month.toString().padLeft(2, '0')}${now.day.toString().padLeft(2, '0')}");
-  sayings.shuffle(Random(daySeed));
-
+  sayings.shuffle();
   return sayings.take(7).toList();
 }
 
 @riverpod
 Future<DailyWordModel> dailyWord(Ref ref) async {
-  // fetch random daily word from daily words collection
   final snapshot = await firestore.collection('daily_words').get();
   final randomIndex = random.nextInt(snapshot.docs.length);
   final doc = snapshot.docs[randomIndex];
@@ -65,7 +57,6 @@ Future<DailyWordModel> dailyWord(Ref ref) async {
 
 @riverpod
 Future<DailyPhraseModel> dailyPhrase(Ref ref) async {
-  // fetch random daily phrase from daily phrases collection
   final snapshot = await firestore.collection('daily_phrases').get();
   final randomIndex = random.nextInt(snapshot.docs.length);
   final doc = snapshot.docs[randomIndex];
@@ -74,19 +65,18 @@ Future<DailyPhraseModel> dailyPhrase(Ref ref) async {
 
 @riverpod
 Future<List<QuizQuestionModel>> daillyQuizQuestion(Ref ref) async {
-  // fetch random 2 quiz question from quiz questions collection
   final snapshot = await firestore.collection('daily_quiz_questions').get();
-  final randomIndices = List.generate(2, (_) => random.nextInt(snapshot.docs.length));
-  final docs = randomIndices.map((index) => snapshot.docs[4]).toList();
-  return docs.map((doc) => QuizQuestionModel.fromJson(doc.data())).toList();
+  final docs = snapshot.docs.map((doc) => QuizQuestionModel.fromJson(doc.data())).toList();
+  docs.shuffle();
+  return docs.take(3).toList();
 }
 
 @riverpod
 Future<List<VocabularyEntryModel>> vocabularyEntries(Ref ref) async {
-  // fetch random vocabulary entries from vocabulary collection
   final snapshot = await firestore.collection('daily_vocabulary').get();
   final entries = snapshot.docs.map((doc) => VocabularyEntryModel.fromJson(doc.data())).toList();
-  return entries..shuffle();
+  entries.shuffle();
+  return entries.take(5).toList();
 }
 
 @riverpod

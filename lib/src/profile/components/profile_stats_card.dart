@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/data/models/authentication_model.dart';
+import 'package:lang_bridge/data/shared_preference/shared_preferences_lib.dart';
 import 'package:lang_bridge/src/profile/components/stat_item.dart';
 
-class ProfileStatsCard extends StatelessWidget {
+class ProfileStatsCard extends ConsumerWidget {
   final AuthenticationModel profile;
 
   const ProfileStatsCard({
@@ -12,8 +13,9 @@ class ProfileStatsCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
+    final userRank = ref.watch(sharedPreferencesProvider).getInt(Preferences.userRankCache) ?? 0;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -43,7 +45,7 @@ class ProfileStatsCard extends StatelessWidget {
           ),
           StatItem(
             label: context.l10n.rank,
-            value: '6#',
+            value: '$userRank#',
           ),
         ],
       ),

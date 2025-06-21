@@ -99,7 +99,7 @@
     "helpAndSupportDetails": "إذا كنت بحاجة إلى مساعدة أو دعم، يمكنك التواصل معنا عبر البريد الإلكتروني:fs58fryfbyqc@gmail.com",
 
     "points": "النقاط",
-    "streak": "المسار",
+    "streak": "السلسلة",
     "rank": "الترتيب",
     "memberSince": "عضو منذ",
     "personalInformation": "المعلومات الشخصية",
@@ -254,6 +254,9 @@
 
  "testCompleted": "تم الانتهاء من الاختبار!",
 "startNewPractice": "ابدأ تدريبًا جديدًا"
- 
+ ,
+
+ "locked": "مقفل",
+"play": "ابدأ"
 
 }

@@ -20,7 +20,7 @@ class ListeningPracticePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final languageCode = ref.read(settingsProvider).locale!.languageCode;
+    final languageCode = ref.read(settingsProvider).locale.languageCode;
     final sentencesAsync = ref.watch(listeningPracticeProvider);
 
     return Scaffold(
@@ -33,7 +33,7 @@ class ListeningPracticePage extends HookConsumerWidget {
       body: sentencesAsync.when(
         data: (sentences) => PracticeContent(
           sentences: sentences,
-          languageCode: languageCode,
+          languageCode: languageCode ?? 'en',
         ),
         loading: () => const LoadingDisplay(),
         error: (error, stack) => ErrorDisplay(
@@ -90,6 +90,7 @@ class PracticeContent extends HookConsumerWidget {
           performance: performance,
           onConfirm: () {
             context.pop();
+            // ignore: unused_result
             ref.read(activitiesProvider.notifier).listening(performance);
           },
         ),

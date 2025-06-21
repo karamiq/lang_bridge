@@ -79,25 +79,6 @@ class CategoryCard extends StatelessWidget {
                         ),
                         textDirection: TextDirection.rtl,
                       ),
-                      SizedBox(height: 12),
-                      // Container(
-                      //   padding: EdgeInsets.symmetric(
-                      //     horizontal: 12,
-                      //     vertical: 6,
-                      //   ),
-                      //   decoration: BoxDecoration(
-                      //     color: Colors.white.withOpacity(0.2),
-                      //     borderRadius: BorderRadius.circular(20),
-                      //   ),
-                      //   child: Text(
-                      //     '$wordCount words',
-                      //     style: TextStyle(
-                      //       color: Colors.white,
-                      //       fontSize: 12,
-                      //       fontWeight: FontWeight.w600,
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),

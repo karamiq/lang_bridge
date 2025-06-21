@@ -6,7 +6,7 @@ part of 'daily_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dailySayingHash() => r'f4d854710714b27cff697a7926aeaa210926a69f';
+String _$dailySayingHash() => r'49574ad8c9307a20dfca64b1399f06da60f72def';
 
 /// See also [dailySaying].
 @ProviderFor(dailySaying)
@@ -57,7 +57,7 @@ final dailyPhraseProvider =
 // ignore: unused_element
 typedef DailyPhraseRef = AutoDisposeFutureProviderRef<DailyPhraseModel>;
 String _$daillyQuizQuestionHash() =>
-    r'3026c7d7902eb82110dc74e9adbf375a2c4016cb';
+    r'067d58f6bbde1c726c004bbaf231231b9d68b0d0';
 
 /// See also [daillyQuizQuestion].
 @ProviderFor(daillyQuizQuestion)
@@ -76,7 +76,7 @@ final daillyQuizQuestionProvider =
 // ignore: unused_element
 typedef DaillyQuizQuestionRef
     = AutoDisposeFutureProviderRef<List<QuizQuestionModel>>;
-String _$vocabularyEntriesHash() => r'75a0df4a0fc342692d4aa0d7c4618e4f0c6821b5';
+String _$vocabularyEntriesHash() => r'2b2077d527463c97762b6252bf21d4d22f42b94e';
 
 /// See also [vocabularyEntries].
 @ProviderFor(vocabularyEntries)

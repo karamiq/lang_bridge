@@ -15,11 +15,11 @@ abstract class AppSettings with _$AppSettings {
   const AppSettings._();
 
   const factory AppSettings({
-    @Default(ThemeMode.system) ThemeMode themeMode,
-    @Default(null) String? localeCode,
+    @Default(ThemeMode.light) ThemeMode themeMode,
+    @Default('en') String localeCode,
   }) = _AppSettings;
 
-  Locale? get locale => localeCode == null ? null : Locale(localeCode!);
+  Locale get locale => Locale(localeCode);
 
   factory AppSettings.fromJson(Map<String, dynamic> json) => _$AppSettingsFromJson(json);
 }
@@ -42,9 +42,8 @@ class Settings extends _$Settings with ObjectPreferenceProvider {
   Future<void> toggleThemeMode(BuildContext context) =>
       update((state) => state.copyWith(themeMode: ThemeX.getOppositeThemeMode(state.themeMode, context)));
 
-  Future<void> setLocale(Locale? locale) =>
-      update((state) => state.copyWith(localeCode: locale?.languageCode));
+  Future<void> setLocale(Locale locale) => update((state) => state.copyWith(localeCode: locale.languageCode));
 
   Future<void> toggleLocale() =>
-      update((state) => state.copyWith(localeCode: state.locale?.languageCode == "en" ? "ar" : "en"));
+      update((state) => state.copyWith(localeCode: state.locale.languageCode == "en" ? "ar" : "en"));
 }

@@ -9,7 +9,7 @@ part of 'settings_provider.dart';
 _AppSettings _$AppSettingsFromJson(Map<String, dynamic> json) => _AppSettings(
       themeMode: $enumDecodeNullable(_$ThemeModeEnumMap, json['themeMode']) ??
           ThemeMode.system,
-      localeCode: json['localeCode'] as String? ?? null,
+      localeCode: json['localeCode'] as String? ?? 'en',
     );
 
 Map<String, dynamic> _$AppSettingsToJson(_AppSettings instance) =>
@@ -28,7 +28,7 @@ const _$ThemeModeEnumMap = {
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsHash() => r'8761e8fe98819b347c5db3bed11c936e1e84bba9';
+String _$settingsHash() => r'7dd0919ac47a68472032d285d3ce0db7cbaf1e07';
 
 /// See also [Settings].
 @ProviderFor(Settings)

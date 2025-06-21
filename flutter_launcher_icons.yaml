@@ -1,0 +1,21 @@
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/lang_bridge_icon_light.png"           # Light mode
+  min_sdk_android: 21
+
+  adaptive_icon_foreground: "assets/images/lang_bridge_icon_light.png"
+  adaptive_icon_background:  "assets/images/lang_bridge_icon_dark.png"    
+
+  # iOS config
+  image_path_ios: "assets/images/lang_bridge_icon_light.png"
+  remove_alpha_ios: true
+  image_path_ios_dark_transparent: "assets/images/lang_bridge_icon_light.png"
+  image_path_ios_tinted_grayscale: "assets/images/lang_bridge_icon_dark.png" 
+  desaturate_tinted_to_grayscale_ios: true  # iOS dark mode icon
+
+
+ # adaptive_icon_background: "assets/icon/background.png"
+  # adaptive_icon_foreground: "assets/icon/foreground.png"
+  # adaptive_icon_foreground_inset: 16
+  # adaptive_icon_monochrome: "assets/icon/monochrome.png"

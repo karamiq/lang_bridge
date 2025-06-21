@@ -13,7 +13,7 @@ class WritingPracticePage extends StatefulWidget {
 
 class _WritingPracticePageState extends State<WritingPracticePage> {
   final PageController _pageController = PageController();
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {

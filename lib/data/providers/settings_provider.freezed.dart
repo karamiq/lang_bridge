@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppSettings {
   ThemeMode get themeMode;
-  String? get localeCode;
+  String get localeCode;
 
   /// Create a copy of AppSettings
   /// with the given fields replaced by the non-null parameter values.
@@ -55,7 +55,7 @@ abstract mixin class $AppSettingsCopyWith<$Res> {
           AppSettings value, $Res Function(AppSettings) _then) =
       _$AppSettingsCopyWithImpl;
   @useResult
-  $Res call({ThemeMode themeMode, String? localeCode});
+  $Res call({ThemeMode themeMode, String localeCode});
 }
 
 /// @nodoc
@@ -71,17 +71,17 @@ class _$AppSettingsCopyWithImpl<$Res> implements $AppSettingsCopyWith<$Res> {
   @override
   $Res call({
     Object? themeMode = null,
-    Object? localeCode = freezed,
+    Object? localeCode = null,
   }) {
     return _then(_self.copyWith(
       themeMode: null == themeMode
           ? _self.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      localeCode: freezed == localeCode
+      localeCode: null == localeCode
           ? _self.localeCode
           : localeCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -90,7 +90,7 @@ class _$AppSettingsCopyWithImpl<$Res> implements $AppSettingsCopyWith<$Res> {
 @JsonSerializable()
 class _AppSettings extends AppSettings {
   const _AppSettings(
-      {this.themeMode = ThemeMode.system, this.localeCode = null})
+      {this.themeMode = ThemeMode.system, this.localeCode = 'en'})
       : super._();
   factory _AppSettings.fromJson(Map<String, dynamic> json) =>
       _$AppSettingsFromJson(json);
@@ -100,7 +100,7 @@ class _AppSettings extends AppSettings {
   final ThemeMode themeMode;
   @override
   @JsonKey()
-  final String? localeCode;
+  final String localeCode;
 
   /// Create a copy of AppSettings
   /// with the given fields replaced by the non-null parameter values.
@@ -146,7 +146,7 @@ abstract mixin class _$AppSettingsCopyWith<$Res>
       __$AppSettingsCopyWithImpl;
   @override
   @useResult
-  $Res call({ThemeMode themeMode, String? localeCode});
+  $Res call({ThemeMode themeMode, String localeCode});
 }
 
 /// @nodoc
@@ -162,17 +162,17 @@ class __$AppSettingsCopyWithImpl<$Res> implements _$AppSettingsCopyWith<$Res> {
   @pragma('vm:prefer-inline')
   $Res call({
     Object? themeMode = null,
-    Object? localeCode = freezed,
+    Object? localeCode = null,
   }) {
     return _then(_AppSettings(
       themeMode: null == themeMode
           ? _self.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      localeCode: freezed == localeCode
+      localeCode: null == localeCode
           ? _self.localeCode
           : localeCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
