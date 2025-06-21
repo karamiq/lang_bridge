@@ -1,4 +1,6 @@
 // lib/models/word_error.dart
+import 'package:flutter/material.dart';
+
 class WordError {
   final int position;
   final String userWord;
@@ -19,9 +21,13 @@ enum WordErrorType {
   extra,
 }
 
+// Accuracy Result Card Widget
 class AccuracyResult {
   final int accuracy;
-  final List<WordError> wordErrors;
+  final List<TextSpan> highlightedText;
 
-  AccuracyResult({required this.accuracy, required this.wordErrors});
+  AccuracyResult({
+    required this.accuracy,
+    required this.highlightedText,
+  });
 }

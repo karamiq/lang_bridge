@@ -1,8 +1,9 @@
 import 'package:lang_bridge/data/models/story_model.dart';
 import 'package:lang_bridge/data/shared_preference/preferences.dart';
 import 'package:lang_bridge/router/routing_animation.dart';
-import 'package:lang_bridge/src/activities/pages/listening_practice.dart/listening_practice_page.dart';
+import 'package:lang_bridge/src/activities/pages/listening_practice/listening_practice_page.dart';
 import 'package:lang_bridge/src/activities/pages/memory_game/memory_game_page.dart';
+import 'package:lang_bridge/src/activities/pages/target/target_page.dart';
 import 'package:lang_bridge/src/activities/pages/writing_practice/writing_practice_page.dart';
 import 'package:lang_bridge/src/auth/login_page.dart';
 import 'package:lang_bridge/src/auth/signup_page.dart';
@@ -162,6 +163,12 @@ final router = GoRouter(
                       state,
                       const ListeningPracticePage(),
                     )),
+            GoRoute(
+                path: RoutesDocument.target,
+                pageBuilder: (context, state) => instanTransition(
+                      state,
+                      const TargetPage(),
+                    )),
           ],
         ),
         GoRoute(
@@ -208,7 +215,9 @@ class RoutesDocument {
   static const String achievements = '/achievements';
   static const String memeoryGame = '/memory-game';
   static const String listeningPractice = '/listening-practice';
-  static String writingPractice = '/writing-practice';
+  static const String writingPractice = '/writing-practice';
+
+  static const String target = '/target';
 
   static String learnWordsCategory(String id) => '$learnWords/$id';
   static String learnStoriesStory(String id) => '$learnStories/$id';

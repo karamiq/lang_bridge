@@ -97,8 +97,8 @@ class _MemoryGame extends HookConsumerWidget {
                     restartGame();
                   },
                   onFinish: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
+                    context.pop();
+                    context.pop();
                   },
                 ),
               );

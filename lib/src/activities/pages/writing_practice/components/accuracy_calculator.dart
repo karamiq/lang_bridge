@@ -1,5 +1,6 @@
 // lib/utils/accuracy_calculator.dart
 import 'dart:math';
+import 'package:flutter/material.dart';
 import 'package:lang_bridge/src/activities/pages/writing_practice/components/word_error.dart';
 
 class AccuracyCalculator {
@@ -7,13 +8,11 @@ class AccuracyCalculator {
     if (userInput.isEmpty) {
       return AccuracyResult(
         accuracy: 0,
-        wordErrors: [
-          WordError(
-            position: 0,
-            userWord: '',
-            correctWord: correctText,
-            type: WordErrorType.missing,
-          )
+        highlightedText: [
+          TextSpan(
+            text: correctText,
+            style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+          ),
         ],
       );
     }
@@ -22,7 +21,7 @@ class AccuracyCalculator {
     final correctWords = correctText.trim().split(RegExp(r'\s+'));
 
     int correctCount = 0;
-    List<WordError> wordErrors = [];
+    List<TextSpan> wordErrors = [];
 
     // Calculate word-by-word accuracy
     for (int i = 0; i < max(userWords.length, correctWords.length); i++) {
@@ -30,27 +29,25 @@ class AccuracyCalculator {
         if (userWords[i].toLowerCase() == correctWords[i].toLowerCase()) {
           correctCount++;
         } else {
-          wordErrors.add(WordError(
-            position: i,
-            userWord: userWords[i],
-            correctWord: correctWords[i],
-            type: WordErrorType.incorrect,
+          wordErrors.add(TextSpan(
+            text: correctWords[i],
+            style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
           ));
         }
       } else if (i >= userWords.length) {
-        wordErrors.add(WordError(
-          position: i,
-          userWord: '',
-          correctWord: correctWords[i],
-          type: WordErrorType.missing,
-        ));
+        wordErrors.add(
+          TextSpan(
+            text: correctWords[i],
+            style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+          ),
+        );
       } else {
-        wordErrors.add(WordError(
-          position: i,
-          userWord: userWords[i],
-          correctWord: '',
-          type: WordErrorType.extra,
-        ));
+        wordErrors.add(
+          TextSpan(
+            text: userWords[i],
+            style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+          ),
+        );
       }
     }
 
@@ -59,7 +56,7 @@ class AccuracyCalculator {
     final baseAccuracy = correctWords.isEmpty ? 0 : (correctCount / correctWords.length * 100).round();
     final finalAccuracy = max(baseAccuracy, (similarity * 100).round());
 
-    return AccuracyResult(accuracy: finalAccuracy, wordErrors: wordErrors);
+    return AccuracyResult(accuracy: finalAccuracy, highlightedText: wordErrors);
   }
 
   static double _calculateStringSimilarity(String a, String b) {

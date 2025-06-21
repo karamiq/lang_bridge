@@ -219,6 +219,41 @@
     "moves": "الحركات",
     "matches": "التطابقات",
     "time": "الوقت",
-     "matchWordsInstruction": "طابق الكلمات بالإنجليزية والعربية"
+     "matchWordsInstruction": "طابق الكلمات بالإنجليزية والعربية",
+
+
+     "listeningProgressQuestion": "السؤال {current} من {total}",
+     "@listeningProgressQuestion": {
+       "placeholders": {
+         "current": {},
+         "total": {}
+       }
+     }
+, "listenAndType": "استمع بعناية واكتب ما تسمعه",
+"playAudio": "تشغيل الصوت",
+"playing": "يتم التشغيل...",
+"yourAnswer": "إجابتك",
+"typeWhatYouHeard": "اكتب ما سمعته...",
+"wordsCount": "عدد الكلمات: {count}",
+"@wordsCount": {
+  "description": "يعرض عدد الكلمات التي تم كتابتها",
+  "placeholders": {
+    "count": {}
+  }
+}
+,
+ "translation": "الترجمة",
+ "results": "النتائج",
+ "accuracyPercentage": "الدقة: {accuracy}٪",
+ "hideDetails": "إخفاء التفاصيل",
+ "showDetails": "عرض التفاصيل",
+ "correctAnswer": "الإجابة الصحيحة",
+
+ "noAnswerProvided": "لم يتم تقديم إجابة",
+ "wordComparison": "مقارنة الكلمات:",
+
+ "testCompleted": "تم الانتهاء من الاختبار!",
+"startNewPractice": "ابدأ تدريبًا جديدًا"
+ 
 
 }

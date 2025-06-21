@@ -234,5 +234,41 @@
   "moves": "Moves",
   "matches": "Matches",
   "time": "Time",
-   "matchWordsInstruction": "Match the words in English and Arabic"
+   "matchWordsInstruction": "Match the words in English and Arabic",
+
+
+
+   "listeningProgressQuestion": "Question {current} of {total}",
+   "@listeningProgressQuestion": {
+     "placeholders": {
+       "current": {},
+       "total": {}
+     }
+   },
+   "listenAndType": "Listen carefully and type what you hear",
+   "playAudio": "Play Audio",
+   "playing": "Playing...",
+
+   "yourAnswer": "Your Answer",
+   "typeWhatYouHeard": "Type what you heard...",
+   "wordsCount": "Words: {count}",
+   "@wordsCount": {
+     "description": "Shows how many words were typed",
+     "placeholders": {
+       "count": {}
+     }
+   },
+     "translation": "Translation",
+
+     "results": "Results",
+"accuracyPercentage": "Accuracy: {accuracy}%",
+"showDetails": "Show Details",
+"hideDetails": "Hide Details",
+"correctAnswer": "Correct Answer:",
+"noAnswerProvided": "No answer provided",
+"wordComparison": "Word Comparison:",
+
+"testCompleted": "Test Completed!",
+"startNewPractice": "Start New Practice"
+
 }

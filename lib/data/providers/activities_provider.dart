@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lang_bridge/data/models/authentication_model.dart';
+import 'package:lang_bridge/data/models/listening_practice_models.dart';
 import 'package:lang_bridge/data/models/memory_card_model.dart';
 import 'package:lang_bridge/data/providers/authentication_provider.dart';
 import 'package:lang_bridge/data/services/clients/_clients.dart';
@@ -7,8 +8,6 @@ import 'package:lang_bridge/data/services/clients/_clients.dart';
 part 'activities_provider.g.dart';
 
 final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-final today = DateTime.now().toIso8601String().split('T').first;
 
 @riverpod
 class Activities extends _$Activities with AsyncXNotifierMixin<dynamic> {
@@ -24,10 +23,26 @@ class Activities extends _$Activities with AsyncXNotifierMixin<dynamic> {
         await firestore.collection('users').doc(user.uid).update({
           'points': game.points + user.points,
         });
-        await _updatingQuery('memory_game').set(game.toJson());
+        await _updatingQuery('memory_game').add(game.toJson());
       });
 
-  _updatingQuery(String collectionName) {
-    return firestore.collection('users').doc(user.uid).collection(collectionName).doc(today);
+  @useResult
+  RunXCallback<dynamic> listening(ListeningPracticePerformanceModel listening) => handle(() async {
+        await firestore.collection('users').doc(user.uid).update({
+          'points': listening.totalPoints + user.points,
+        });
+        await _updatingQuery('listening_practice').add(listening.toJson());
+      });
+
+  @useResult
+  RunXCallback<dynamic> writing(quiz) => handle(() async {
+        await firestore.collection('users').doc(user.uid).update({
+          'points': quiz.points + user.points,
+        });
+        await _updatingQuery('writing_practice').add(quiz.toJson());
+      });
+
+  CollectionReference<Map<String, dynamic>> _updatingQuery(String collectionName) {
+    return firestore.collection('users').doc(user.uid).collection(collectionName);
   }
 }
