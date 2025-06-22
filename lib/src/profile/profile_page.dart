@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:lang_bridge/common_lib.dart';
 import 'package:lang_bridge/data/providers/authentication_provider.dart';
@@ -11,7 +9,6 @@ import 'package:lang_bridge/src/profile/components/profile_header.dart';
 import 'package:lang_bridge/src/profile/components/profile_section_card.dart';
 import 'package:lang_bridge/src/profile/components/profile_setting_tile.dart';
 import 'package:lang_bridge/src/profile/components/profile_stats_card.dart';
-import 'package:lang_bridge/theme/theme_mode.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
@@ -43,7 +40,7 @@ class ProfilePage extends ConsumerWidget {
           ProfileActionTile(
             icon: Icons.language,
             title: context.l10n.changeLanguage,
-            subtitle: settings.locale?.languageCode.toUpperCase() ?? context.l10n.defaultErrorMessage,
+            subtitle: settings.locale.languageCode.toUpperCase(),
             onTap: () => _showLanguageDialog(context),
           ),
         ],

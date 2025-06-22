@@ -15,7 +15,7 @@ class BilingualStoryContent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isArabic = ref.watch(settingsProvider).locale!.languageCode == 'ar';
+    final isArabic = ref.watch(settingsProvider).locale.languageCode == 'ar';
 
     return Row(
       children: isArabic

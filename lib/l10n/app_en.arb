@@ -167,6 +167,7 @@
   "previous_button": "Previous",
   "next_button": "Next",
   "finish_button": "Finish",
+  "reset": "Reset",
 
   "introduction": "Introduction",
   "greetings": "Greetings",

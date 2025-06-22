@@ -13,7 +13,7 @@ class LanguageDialog extends ConsumerStatefulWidget {
 class _LanguageDialogState extends ConsumerState<LanguageDialog> {
   @override
   Widget build(BuildContext context) {
-    String selectedLanguage = ref.watch(settingsProvider).locale?.languageCode ?? 'en';
+    String selectedLanguage = ref.watch(settingsProvider).locale.languageCode;
     final colorScheme = Theme.of(context).colorScheme;
 
     return AlertDialog(

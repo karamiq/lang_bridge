@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lang_bridge/common_lib.dart';
 
 class ActionButtonsRow extends StatelessWidget {
   final VoidCallback? onNext;
@@ -22,7 +23,7 @@ class ActionButtonsRow extends StatelessWidget {
           child: OutlinedButton.icon(
             onPressed: onReset,
             icon: const Icon(Icons.refresh),
-            label: const Text('Reset'),
+            label: Text(context.l10n.reset),
           ),
         ),
         const SizedBox(width: 16),
@@ -30,7 +31,7 @@ class ActionButtonsRow extends StatelessWidget {
           child: ElevatedButton.icon(
             onPressed: onNext,
             icon: Icon(isLastSentence ? Icons.check : Icons.arrow_forward),
-            label: Text(isLastSentence ? 'Finish' : 'Next'),
+            label: Text(isLastSentence ? context.l10n.finish : context.l10n.next),
           ),
         ),
       ],

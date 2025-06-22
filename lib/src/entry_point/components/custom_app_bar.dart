@@ -111,7 +111,7 @@ class CustomAppBar extends ConsumerWidget implements PreferredSizeWidget {
                           ),
                         ),
                         child: Text(
-                          ref.read(settingsProvider).locale?.languageCode == 'ar' ? 'AR → EN' : 'EN → AR',
+                          ref.read(settingsProvider).locale.languageCode == 'ar' ? 'AR → EN' : 'EN → AR',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,

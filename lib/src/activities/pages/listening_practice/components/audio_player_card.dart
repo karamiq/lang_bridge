@@ -62,12 +62,15 @@ class AudioPlayerCard extends HookWidget {
     if (language != 'ar') {
       await flutterTts.setLanguage('ar');
       flutterTts.setPitch(.2);
-      flutterTts.setSpeechRate(0.3);
+      flutterTts.setSpeechRate(0.5);
       await flutterTts.speak(sentence.arabic);
+      flutterTts.setCompletionHandler(() {
+        isPlaying.value = false;
+      });
     } else {
       await flutterTts.setLanguage('en');
-      flutterTts.setPitch(.2);
-      flutterTts.setSpeechRate(0.3);
+      flutterTts.setPitch(.5);
+      flutterTts.setSpeechRate(1);
       await flutterTts.speak(sentence.english);
 
       flutterTts.setCompletionHandler(() {

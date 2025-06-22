@@ -33,7 +33,7 @@ class ListeningPracticePage extends HookConsumerWidget {
       body: sentencesAsync.when(
         data: (sentences) => PracticeContent(
           sentences: sentences,
-          languageCode: languageCode ?? 'en',
+          languageCode: languageCode,
         ),
         loading: () => const LoadingDisplay(),
         error: (error, stack) => ErrorDisplay(

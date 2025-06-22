@@ -163,8 +163,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                                 loading: () {},
                                 error: (e, stackTrace) {
                                   final error = (e as FirebaseAuthException);
-                                  Utils.showErrorSnackBar(getFirebaseAuthErrorMessage(
-                                      error.code, settings.locale?.languageCode ?? 'en'));
+                                  Utils.showErrorSnackBar(
+                                      getFirebaseAuthErrorMessage(error.code, settings.locale.languageCode));
                                 },
                                 data: (value) {
                                   context.go(RoutesDocument.landing);

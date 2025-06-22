@@ -14,7 +14,7 @@ class GameCardActionButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isArabic = ref.read(settingsProvider).locale?.languageCode == 'ar';
+    final isArabic = ref.read(settingsProvider).locale.languageCode == 'ar';
     final colorScheme = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final lockedColor = isDark ? const Color(0xFF8B5A2B) : const Color(0xFF6366F1);

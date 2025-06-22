@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
-
-import 'package:lang_bridge/src/activities/pages/writing_practice/components/accuracy_calculator.dart';
 
 // Main Writing Practice Page
 class WritingPracticePage extends StatefulWidget {
