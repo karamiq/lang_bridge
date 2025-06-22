@@ -1,4 +1,6 @@
 import 'package:lang_bridge/data/models/authentication_model.dart';
+import 'package:lang_bridge/data/providers/provider.dart';
+import 'package:lang_bridge/data/providers/provider_shared_preferences.dart';
 import 'package:lang_bridge/data/shared_preference/preferences.dart';
 import 'package:lang_bridge/router/app_router.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +29,7 @@ class Authentication extends _$Authentication with NullableObjectPreferenceProvi
     await clear();
     // ignore: avoid_manual_providers_as_generated_provider_dependency
     ref.read(routerProvider).go(RoutesDocument.login);
+    ref.read(sharedPreferencesProvider).remove(Preferences.userRankCache);
   }
 
   // bool isSignedIn() => build()?.token != null;

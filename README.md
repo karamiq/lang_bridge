@@ -1,45 +1,87 @@
-# Riverpod structure
-A flutter project built on MVVM design pattern, structured with riverpod, shared preferences, retrofit, goRouter.
+# 🌍 LangBridge
 
-## Project Setup
+A Flutter project using MVVM architecture with Riverpod, Shared Preferences, Retrofit, and GoRouter.
 
-Things to do when you setup your project with riverpod structure:
+## 📘 About the App
 
-1- After replacing the Manifest Make sure of changing android:label, then change host name for deeplinking from ../android/app/src/main/Android.Manifest.xml for android, and search for (<!-- Deep linking -->),
-then change the host name in http and https.
-and same for ios from ..ios/Runner/info.plist, and search for flutterbooksample.com, then change the name to your host name.
+**LangBridge – Learn English & Arabic Together** is a bilingual mobile app designed for kids and beginners to learn Arabic and English through words, phrases, quizzes, and fun activities.
 
-2- run these commands:
-flutter pub run change_app_package_name:main <your new package name>,
-flutter pub global run rename --bundleId <your new package name>,
-flutter pub global run rename --appname <your new App name>,
-in search replace (package:app) with (package:<your new App name>)
-to change your app package name and name.
+## 🔑 Core Features
 
-3- change app name from pubspec.yaml and from main.dart.
+- **Word Bank by Category**
+  - Categories: Animals, Colors, Numbers, Family, School, Food
+  - Words in Arabic & English with audio pronunciation
 
-4- dart pub global activate flutter_gen & flutter pub global activate build_runner & flutter pub run build_runner build.
+- **Mini Quiz Game**
+  - Multiple-choice and reverse quizzes
+  - Score tracking
 
-5- add this permission (<uses-permission android:name="android.permission.INTERNET"/>)
+- **Daily Challenges**
+  - One English & one Arabic word daily
+  - Feedback and review system
 
-6- dart run custom_lint
-# Install custom_lint for all projects
-dart pub global activate custom_lint
-# run custom_lint's command line in a project
-custom_lint
+- **Basic Phrases**
+  - Common beginner phrases in both languages
+  - Audio support for learning pronunciation
 
-7- update the assetslinks.json file
+- **Activities**
+  - Memory game: Match English and Arabic cards
+  - Listening game: Type what you hear
 
-9- follow the official build and release guide (https://docs.flutter.dev/deployment/android) and then update the key.properties.
+- **Leaderboard**
+  - Ranks top 21 users based on points
 
-10- To get the release certificate fingerprint on MacOs: (keytool -list -v \
--alias <your-key-name> -keystore <path-to-production-keystore>)
+- **Profile Page**
+  - Personal info, points, streak, and rank
+  - Language switch (EN/AR), dark/light mode, settings
 
-11- To get the debug certificate fingerprint on MacOs: (keytool -list -v \
--alias androiddebugkey -keystore ~/.android/debug.keystore)
+  - **Streak Tracking**
+  - Streak increases just by opening the app daily to encourage consistent learning
 
-12- follow this video for ios notification config (https://youtu.be/Hg1ZJjWzRxs?feature=shared)
+## ⚙️ Tech Stack
 
-13- if web run these commands (gcloud init) && (gsutil cors set cors.json storage bucket)
+- Flutter (iOS & Android)
+- Firebase & Firestore (progress & data)
+- Riverpod, Retrofit, Shared Preferences, GoRouter
 
-14- for hosting assetslink for deeplinking follow this article: (https://medium.com/androiddevelopers/android-app-links-deploy-assetlinks-json-in-minutes-d7082dffcac)# lang_bridge
+## 📄 App Pages Overview
+
+1. **Auth Pages** – Login and Sign Up
+2. **Landing Pages** – Six intro pages about app features
+3. **Learning Page**
+   - Words (with categories)
+   - Stories (Beginner, Intermediate, Advanced in AR/EN)
+   - Phrases (just like words)
+4. **Daily Page** – Daily words, quizzes, phrases, and sayings
+5. **Activities Page** – Memory & listening games
+6. **Leaderboard Page** – Top users ranking
+7. **Profile Page** – User info, streak, rank, settings
+
+Built for bilingual education in a simple, interactive, and engaging way.
+
+
+
+**Auth Pages** --Sign Up
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.04.22.png>)
+
+**Learning Page**
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.03.48.png>)
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.03.51.png>)![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.03.53.png>)
+
+
+**Landing Pages** -- The first and Last pages
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.04.40.png>)![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.04.49.png>)
+
+**Daily Page**
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.04.00.png>)
+
+**Activities Page**
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.04.03.png>)
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.13.08.png>)
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.13.17.png>)
+
+**Leaderboard Page**
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.06.13.png>)
+
+**Profile Page**
+![alt text](<Simulator Screenshot - iPhone 16 Plus - 2025-06-22 at 16.05.20.png>)
