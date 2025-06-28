@@ -28,49 +28,49 @@ class SayingCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(Insets.large),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Quote icon
             Icon(
               Icons.format_quote,
               size: 32,
               color: Colors.white.withOpacity(0.8),
             ),
             const Gap(Insets.small),
-
-            // Arabic saying
             Expanded(
-              child: Center(
-                child: Text(
-                  saying.arabicSaying,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24, fontFamily: 'thuluth'),
-                  textAlign: TextAlign.center,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Text(
+                    saying.arabicSaying,
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        fontFamily: 'thuluth'),
+                    textAlign: TextAlign.center,
+                    maxLines: null, // Allow unlimited lines
+                    overflow: TextOverflow.visible,
+                  ),
                 ),
               ),
             ),
-
-            // English saying (if showBothLanguages is true)
-
-            const Gap(Insets.small),
             Expanded(
-              child: Center(
-                child: Text(
-                  saying.englishSaying,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.white.withOpacity(0.9),
-                        fontStyle: FontStyle.italic,
-                        height: 1.3,
-                      ),
-                  textAlign: TextAlign.center,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Text(
+                    saying.englishSaying,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Colors.white.withOpacity(0.9),
+                          fontStyle: FontStyle.italic,
+                          height: 1.3,
+                        ),
+                    textAlign: TextAlign.center,
+                    maxLines: null, // Allow unlimited lines
+                    overflow: TextOverflow.visible,
+                  ),
                 ),
               ),
             ),
-
-            const Gap(Insets.medium),
-
-            // Author information
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   '— ${saying.arabicAuthor}',
@@ -79,6 +79,9 @@ class SayingCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
                       fontFamily: 'thuluth'),
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 if (saying.englishAuthor.isNotEmpty) ...[
                   const Gap(Insets.extraSmall),
@@ -87,6 +90,9 @@ class SayingCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Colors.white.withOpacity(0.9),
                         ),
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ],

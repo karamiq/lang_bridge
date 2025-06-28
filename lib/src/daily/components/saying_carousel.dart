@@ -62,23 +62,38 @@ class _SayingsCarouselState extends State<SayingsCarousel> {
 
     return Column(
       children: [
-        AspectRatio(
-          aspectRatio: 16 / 11.5,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(Insets.large),
-            child: PageView.builder(
-              controller: _pageController,
-              itemCount: widget.sayings.length,
-              onPageChanged: (int index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-              itemBuilder: (context, index) => SayingCard(
-                saying: widget.sayings[index],
+        LayoutBuilder(
+          builder: (context, constraints) {
+            // Calculate dynamic height based on screen size
+            final screenHeight = MediaQuery.of(context).size.height;
+            double dynamicHeight = screenHeight * .3;
+            dynamicHeight = dynamicHeight.clamp(200.0, 400.0);
+
+            // If we have very limited space, use a smaller percentage
+            if (screenHeight < 600) {
+              dynamicHeight = screenHeight * 0.35;
+              dynamicHeight = dynamicHeight.clamp(180.0, 250.0);
+            }
+
+            return SizedBox(
+              height: dynamicHeight,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(Insets.large),
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: widget.sayings.length,
+                  onPageChanged: (int index) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  },
+                  itemBuilder: (context, index) => SayingCard(
+                    saying: widget.sayings[index],
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
         const Gap(Insets.small),
         FittedBox(
